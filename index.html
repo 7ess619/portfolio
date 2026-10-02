@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Portfolio</title>
+  <!-- meta ด้านล่างต้องเขียนตายตัวในไฟล์นี้ (ระบบพรีวิวลิงก์ไม่รัน JS) จึงไม่ใส่ข้อมูลที่เปลี่ยนบ่อย เช่น ช่วงฝึกงาน แก้เฉพาะเมื่อเปลี่ยนตำแหน่งหรือชื่อ -->
+  <meta name="description" content="พอร์ตโฟลิโอของอินทุอร ธีรางกูร (7ess) UX/UI · Front-end · Character & Game art">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="th_TH">
+  <meta property="og:title" content="อินทุอร ธีรางกูร | Portfolio">
+  <meta property="og:description" content="UX/UI · Front-end · Character & Game art">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='10' fill='%236d28d9'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="top">
+    <a class="logo" href="index.html"><span class="dot" aria-hidden="true"></span><span id="site-name"></span></a>
+    <button class="theme-btn" id="theme-btn" type="button"></button>
+  </header>
+
+  <main>
+    <section class="about" aria-labelledby="about-h">
+      <div class="about-side">
+        <div class="avatar-wrap">
+          <button class="avatar" id="avatar" type="button" aria-pressed="false">
+            <span class="flip-inner">
+              <span class="face front" id="face-front"></span>
+              <span class="face back" id="face-back"></span>
+            </span>
+          </button>
+        </div>
+        <div class="actions">
+          <a class="btn-primary" id="cta" href="#"></a>
+          <a class="btn-secondary" id="resume" href="#" hidden></a>
+          <a class="email-text" id="email-text" href="#"></a>
+        </div>
+      </div>
+      <div class="about-main">
+        <p class="kicker" id="kicker"></p>
+        <h1 id="about-h"></h1>
+        <p class="tagline" id="tagline"></p>
+        <p class="bio" id="bio"></p>
+        <dl class="facts" id="facts"></dl>
+        <details class="more-info" id="more-info" hidden>
+          <summary id="more-summary"></summary>
+          <dl class="facts" id="facts-more"></dl>
+        </details>
+      </div>
+    </section>
+
+    <h2 class="section-title" id="works-title"></h2>
+    <section class="paths" id="paths" aria-label="ผลงาน"></section>
+  </main>
+
+  <footer class="foot">
+    <ul id="links"></ul>
+    <p id="note"></p>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
