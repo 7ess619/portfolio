@@ -17,46 +17,89 @@
     rb.hidden = false;
   }
   $("bio").textContent = A.bio;
-  function fillFace(el, f, fallback) {
-    if (f.image) {
-      el.classList.add("loading");
-      var im = new Image();
-      im.alt = f.alt || "";
-      im.onload = function () { el.classList.remove("loading"); };
-      im.src = f.image;
-      el.appendChild(im);
-    } else {
-      el.textContent = fallback;
-    }
-  }
-  fillFace($("face-front"), A.avatar.front, "ตัวละคร");
-  fillFace($("face-back"), A.avatar.back, "รูปถ่าย");
+  // ---------- รูปโปรไฟล์: สลับหลายภาพ (ภาพแรกค้างนานสุด) ----------
+  var AV = A.avatar;
   var flipBtn = $("avatar");
-  flipBtn.setAttribute("aria-label", A.avatar.label);
-  function setFlip(on) {
-    flipBtn.classList.toggle("is-flipped", on);
-    flipBtn.setAttribute("aria-pressed", on ? "true" : "false");
-  }
-  // พลิกเองเป็นรอบๆ (ไม่พลิกถ้าผู้ใช้ตั้งค่าลดการเคลื่อนไหว)
-  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var timer = null;
-  function stopAuto() { if (timer) { clearInterval(timer); timer = null; } }
-  function startAuto() {
-    stopAuto();
-    if (reduceMotion || !A.avatar.auto) return;
-    timer = setInterval(function () {
-      if (!document.hidden) setFlip(!flipBtn.classList.contains("is-flipped"));
-    }, A.avatar.interval || 4000);
-  }
-  // กดเองได้เสมอ และเริ่มนับรอบใหม่ จะได้ไม่พลิกกลับทันที
-  flipBtn.addEventListener("click", function () {
-    setFlip(!flipBtn.classList.contains("is-flipped"));
-    startAuto();
+  var inner = $("flip-inner");
+  flipBtn.setAttribute("aria-label", AV.label);
+  var faces = AV.slides.map(function (s) {
+    var f = document.createElement("span");
+    f.className = "face";
+    if (s.image) {
+      f.classList.add("loading");
+      var im = new Image();
+      im.alt = s.alt || "";
+      im.onload = function () { f.classList.remove("loading"); };
+      im.src = s.image;
+      f.appendChild(im);
+    } else {
+      f.textContent = s.label || "";
+    }
+    inner.appendChild(f);
+    return f;
   });
-  // เมาส์ชี้ค้างอยู่ = หยุดพลิกชั่วคราว (นิ้วบนมือถือไม่นับ)
+  var current = 0;
+  var cycles = 0;
+  var flipping = false;
+  var timer = null;
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  faces[0].classList.add("is-current");
+
+  function show(i) {
+    faces[current].classList.remove("is-current");
+    current = i;
+    faces[current].classList.add("is-current");
+  }
+  // เปลี่ยนภาพแบบ 2 มิติ: บีบแนวนอนจนบาง -> สลับภาพ -> ขยายกลับ (กดซ้ำระหว่างเปลี่ยนจะถูกข้าม)
+  function go(i) {
+    if (flipping || i === current) return;
+    // ภาพแรก = รูปจริง: เข้า/ออกจากรูปจริงใช้การพลิก ส่วนภาพวาดสลับกันเองใช้การจางสลับ (CSS) ไม่ให้ดูวุ่น
+    var withPhoto = (i === 0 || current === 0);
+    if (reduceMotion || !inner.animate || !withPhoto) { show(i); return; }
+    flipping = true;
+    inner.classList.add("no-fade");
+    var squash = inner.animate(
+      [{ transform: "scaleX(1)" }, { transform: "scaleX(0.02)" }],
+      { duration: 220, easing: "ease-in" }
+    );
+    squash.onfinish = function () {
+      show(i);
+      var grow = inner.animate(
+        [{ transform: "scaleX(0.02)" }, { transform: "scaleX(1)" }],
+        { duration: 260, easing: "ease-out" }
+      );
+      grow.onfinish = function () { inner.classList.remove("no-fade"); flipping = false; };
+    };
+  }
+  function stopAuto() { if (timer) { clearTimeout(timer); timer = null; } }
+  // วนเอง: ค้างตามเวลา hold ของภาพปัจจุบัน แล้วไปภาพถัดไป ครบจำนวนรอบแล้วหยุดพักที่ภาพแรก
+  function loop() {
+    stopAuto();
+    if (reduceMotion || !AV.auto || faces.length < 2) return;
+    if (AV.cycles && cycles >= AV.cycles) return;
+    timer = setTimeout(function () {
+      if (!document.hidden) {
+        var n = (current + 1) % faces.length;
+        if (n === 0) cycles++;
+        go(n);
+      }
+      timer = setTimeout(loop, 520); // รอเปลี่ยนภาพเสร็จ แล้วนับเวลาค้างของภาพใหม่
+    }, AV.slides[current].hold || 3000);
+  }
+  // กดเองได้เสมอ (ไปภาพถัดไป) และเริ่มนับรอบใหม่
+  flipBtn.addEventListener("click", function () {
+    go((current + 1) % faces.length);
+    stopAuto();
+    timer = setTimeout(function () { cycles = 0; loop(); }, 520);
+  });
+  // ใช้คีย์บอร์ดได้ (Enter / Space) เพราะไม่ใช่ <button> จริง
+  flipBtn.addEventListener("keydown", function (e) {
+    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); flipBtn.click(); }
+  });
+  // เมาส์ชี้ค้างอยู่ = หยุดชั่วคราว (นิ้วบนมือถือไม่นับ)
   flipBtn.addEventListener("pointerenter", function (e) { if (e.pointerType === "mouse") stopAuto(); });
-  flipBtn.addEventListener("pointerleave", function (e) { if (e.pointerType === "mouse") startAuto(); });
-  startAuto();
+  flipBtn.addEventListener("pointerleave", function (e) { if (e.pointerType === "mouse") loop(); });
+  loop();
   // ป้ายปุ่มเปลี่ยนตามสถานะ: ปิดอยู่ = "ดูเพิ่มเติม" / เปิดอยู่ = "ดูน้อยลง"
   var moreEl = $("more-info");
   function setMoreLabel() {
@@ -161,8 +204,15 @@
     if (t) return t === "dark";
     return window.matchMedia("(prefers-color-scheme: dark)").matches;
   }
+  // แถบเบราว์เซอร์บนมือถือเปลี่ยนสีตามพื้นหลังจริงของหน้า (อ่านจาก CSS จึงไม่ต้องจำสีซ้ำ)
+  var barMetas = document.querySelectorAll('meta[name="theme-color"]');
+  function paintBrowserBar() {
+    var c = getComputedStyle(document.body).backgroundColor;
+    barMetas.forEach(function (m) { m.setAttribute("content", c); });
+  }
   function label() {
     btn.textContent = isDark() ? S.ui.themeToLight : S.ui.themeToDark;
+    paintBrowserBar();
   }
   btn.addEventListener("click", function () {
     var next = isDark() ? "light" : "dark";

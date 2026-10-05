@@ -3,6 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f4f5" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1c1c1f" media="(prefers-color-scheme: dark)">
   <title>Portfolio</title>
   <!-- meta ด้านล่างต้องเขียนตายตัวในไฟล์นี้ (ระบบพรีวิวลิงก์ไม่รัน JS) จึงไม่ใส่ข้อมูลที่เปลี่ยนบ่อย เช่น ช่วงฝึกงาน แก้เฉพาะเมื่อเปลี่ยนตำแหน่งหรือชื่อ -->
   <meta name="description" content="พอร์ตโฟลิโอของอินทุอร ธีรางกูร (7ess) UX/UI · Front-end · Character & Game art">
@@ -18,7 +20,7 @@
 </head>
 <body>
   <header class="top">
-    <a class="logo" href="index.html"><span class="dot" aria-hidden="true"></span><span id="site-name"></span></a>
+    <a class="logo" href="index.html"><span class="dot" aria-hidden="true"></span><span id="site-name" class="sk"></span></a>
     <button class="theme-btn" id="theme-btn" type="button"></button>
   </header>
 
@@ -26,25 +28,22 @@
     <section class="about" aria-labelledby="about-h">
       <div class="about-side">
         <div class="avatar-wrap">
-          <button class="avatar" id="avatar" type="button" aria-pressed="false">
-            <span class="flip-inner">
-              <span class="face front" id="face-front"></span>
-              <span class="face back" id="face-back"></span>
-            </span>
-          </button>
+          <div class="avatar" id="avatar" role="button" tabindex="0">
+            <span class="flip-inner" id="flip-inner"></span>
+          </div>
         </div>
         <div class="actions">
-          <a class="btn-primary" id="cta" href="#"></a>
+          <a class="btn-primary sk" id="cta" href="#"></a>
           <a class="btn-secondary" id="resume" href="#" hidden></a>
-          <a class="email-text" id="email-text" href="#"></a>
+          <a class="email-text sk" id="email-text" href="#"></a>
         </div>
       </div>
       <div class="about-main">
-        <p class="kicker" id="kicker"></p>
-        <h1 id="about-h"></h1>
-        <p class="tagline" id="tagline"></p>
-        <p class="bio" id="bio"></p>
-        <dl class="facts" id="facts"></dl>
+        <p class="kicker sk" id="kicker"></p>
+        <h1 id="about-h" class="sk"></h1>
+        <p class="tagline sk" id="tagline"></p>
+        <p class="bio sk" id="bio"></p>
+        <dl class="facts sk" id="facts"></dl>
         <details class="more-info" id="more-info" hidden>
           <summary id="more-summary"></summary>
           <dl class="facts" id="facts-more"></dl>
@@ -52,7 +51,7 @@
       </div>
     </section>
 
-    <h2 class="section-title" id="works-title"></h2>
+    <h2 class="section-title sk" id="works-title"></h2>
     <section class="paths" id="paths" aria-label="ผลงาน"></section>
   </main>
 
