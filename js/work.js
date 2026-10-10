@@ -59,26 +59,18 @@
     box.appendChild(el("h1", "", item.title));
 
     var meta = el("p", "work-meta");
+    if (item.year) meta.appendChild(el("span", "work-year", item.year));
     if (item.role) meta.appendChild(el("span", "", item.role));
     if (item.status) meta.appendChild(el("span", "thumb-status", item.status));
     if (meta.childNodes.length) box.appendChild(meta);
 
     if (item.desc) box.appendChild(el("p", "work-lead", item.desc));
 
-    // กรอบ Figma (ถ้ามีลิงก์) โหลดแบบ lazy / ถ้ามี Figma แล้วไม่ต้องมีภาพหน้าปก (ภาพย่อยังอยู่ที่การ์ดหน้า Build)
-    var embed = item.figma ? figmaEmbedUrl(item.figma) : "";
-    if (!embed) {
-      var hero = el("div", "work-hero");
-      var ph = el("div", "ph");
-      placeholderOrImage(ph, item.image, item.imageAlt);
-      hero.appendChild(ph);
-      box.appendChild(hero);
-    }
-    if (embed) {
+    // กรอบ Figma: สร้างจากฟังก์ชันเดียวกันทั้งแบบลิงก์เดียวและแบบมีตัวเลือกสลับ
+    function makeEmbedSection(title, ratio) {
       var fs = el("section", "work-section wide");
-      fs.appendChild(el("h2", "", S.ui.figmaTitle));
+      fs.appendChild(el("h2", "", title));
       var frame = el("div", "work-embed");
-      var ratio = item.figmaRatio || "16 / 10";
       frame.style.aspectRatio = ratio;
       var parts = ratio.split("/");
       if (parts.length === 2 && parseFloat(parts[0]) < parseFloat(parts[1])) frame.classList.add("portrait");
@@ -91,18 +83,75 @@
         }
       });
       var f = document.createElement("iframe");
-      f.src = embed;
       f.title = "Figma: " + item.title;
       f.loading = "lazy";
       f.allowFullscreen = true;
       frame.appendChild(f);
       fs.appendChild(frame);
       var open = el("a", "work-embed-open", S.ui.figmaOpen);
-      open.href = item.figma;
       open.target = "_blank";
       open.rel = "noopener";
       fs.appendChild(open);
-      box.appendChild(fs);
+      return { section: fs, frame: frame, iframe: f, open: open };
+    }
+
+    var ratio = item.figmaRatio || "16 / 10";
+    var embed = item.figma ? figmaEmbedUrl(item.figma) : "";
+    // ตัวเลือกสลับแบบทดลอง (dropdown): แสดงเฉพาะแบบที่ใส่ลิงก์ Figma ที่ฝังได้แล้ว
+    var variants = (item.variants || []).map(function (v) {
+      return { label: v.label, figma: v.figma, preview: v.preview, embed: v.figma ? figmaEmbedUrl(v.figma) : "" };
+    }).filter(function (v) { return v.embed; });
+
+    // ภาพหน้าปก: แสดงเมื่อมีภาพจริงและไม่มี Figma เท่านั้น (ไม่มีภาพ = ไม่โชว์กรอบเปล่า)
+    if (!embed && !variants.length && item.image) {
+      var hero = el("div", "work-hero");
+      var ph = el("div", "ph");
+      placeholderOrImage(ph, item.image, item.imageAlt);
+      hero.appendChild(ph);
+      box.appendChild(hero);
+    }
+
+    if (embed) {
+      var one = makeEmbedSection(S.ui.figmaTitle, ratio);
+      one.iframe.src = embed;
+      one.open.href = item.figma;
+      box.appendChild(one.section);
+    }
+
+    if (variants.length) {
+      var vsec = makeEmbedSection(item.variantsTitle || S.ui.variantsTitle, ratio);
+      if (item.variantsNote) {
+        vsec.section.insertBefore(el("p", "variant-note", item.variantsNote), vsec.frame);
+      }
+      var bar = el("div", "variant-bar");
+      var lab = el("label", "variant-label", S.ui.variantPick);
+      lab.setAttribute("for", "variant-select");
+      var sel = document.createElement("select");
+      sel.id = "variant-select";
+      sel.className = "variant-select";
+      variants.forEach(function (v, i) {
+        var o = document.createElement("option");
+        o.value = String(i);
+        o.textContent = v.label;
+        sel.appendChild(o);
+      });
+      bar.appendChild(lab);
+      bar.appendChild(sel);
+      vsec.section.insertBefore(bar, vsec.frame);
+      var pv = el("img", "variant-preview");
+      pv.alt = "";
+      pv.loading = "lazy";
+      vsec.section.insertBefore(pv, vsec.frame);
+      function pick(i) {
+        var v = variants[i];
+        vsec.iframe.src = v.embed;
+        vsec.open.href = v.figma;
+        pv.alt = v.label;
+        if (v.preview) { pv.src = v.preview; pv.hidden = false; } else { pv.removeAttribute("src"); pv.hidden = true; }
+      }
+      sel.addEventListener("change", function () { pick(parseInt(sel.value, 10)); });
+      pick(0);
+      box.appendChild(vsec.section);
     }
 
     (item.sections || []).forEach(function (sec) {

@@ -67,7 +67,7 @@ a {
 .top,
 main,
 .foot {
-  max-width: 1280px;
+  max-width: 1120px;
   margin: 0 auto;
 }
 
@@ -111,7 +111,7 @@ main,
 
 .about {
   display: grid;
-  grid-template-columns: 220px 1fr;
+  grid-template-columns: 180px 1fr;
   gap: clamp(1.5rem, 5vw, 4rem);
   align-items: start;
   padding: clamp(2rem, 7vw, 4.5rem) 0 clamp(2rem, 6vw, 4rem);
@@ -158,7 +158,7 @@ main,
 .tagline {
   margin: 0 0 1rem;
   color: var(--muted);
-  font-size: 1.15rem;
+  font-size: 1.05rem;
 }
 
 /* รูปโปรไฟล์แบบสไลด์: รูปจริง 1 รูป (ค้างนาน) + ภาพวาดตัวเองหลายรูป (สลับเร็ว) */
@@ -172,7 +172,7 @@ main,
 .avatar {
   position: relative;
   display: block;
-  width: 220px;
+  width: 180px;
   max-width: 100%;
   aspect-ratio: 1;
   border-radius: 50%;
@@ -238,14 +238,14 @@ main,
 
 .about-main h1 {
   margin: 0 0 .75rem;
-  font-size: clamp(1.8rem, 4.5vw, 2.6rem);
+  font-size: clamp(1.7rem, 4vw, 2.2rem);
   line-height: 1.25;
 }
 
 .bio {
   margin: 0 0 1.5rem;
   max-width: 60ch;
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
 .facts {
@@ -330,7 +330,7 @@ main,
 
 .section-title {
   margin: 0 0 1rem;
-  font-size: 1.3rem;
+  font-size: 1.15rem;
 }
 
 .paths {
@@ -343,7 +343,7 @@ main,
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 12px;
-  padding: 1.25rem 1.5rem 1.5rem;
+  padding: 1rem 1.25rem 1.25rem;
 }
 
 .path-head {
@@ -354,7 +354,7 @@ main,
 
 .path-head h3 {
   margin: 0 0 .25rem;
-  font-size: 1.6rem;
+  font-size: 1.35rem;
 }
 
 .path-head p {
@@ -381,16 +381,22 @@ main,
 .thumbs {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 1fr; /* ทุกแถวสูงเท่ากัน ไม่ว่าการ์ดไหนมีป้ายสถานะหรือไม่ */
   gap: .75rem;
 }
 
 .thumb {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   text-decoration: none;
   font-size: .85rem;
   color: var(--muted);
 }
 
 .thumb .ph {
+  width: 100%;
+  aspect-ratio: 16 / 10;
   border-radius: 8px;
   overflow: hidden;
   margin-bottom: .35rem;
@@ -407,8 +413,12 @@ main,
 }
 
 .thumb-role {
-  display: block;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2; /* ยาวเกิน 2 บรรทัดจะตัดเป็น … ไม่ดันการ์ดให้สูงไม่เท่ากัน */
+  overflow: hidden;
   font-size: .8rem;
+  line-height: 1.5;
 }
 
 .thumb-status {
@@ -490,7 +500,7 @@ main,
    ชื่อ > bio > ปุ่มติดต่อ > ข้อมูลสรุป (2 คอลัมน์ให้เต็มความกว้าง) น้ำหนักเลยไม่กองอยู่ฝั่งซ้าย */
 @media (min-width: 721px) {
   .about {
-    grid-template-columns: 220px minmax(0, 1fr);
+    grid-template-columns: 180px minmax(0, 1fr);
     column-gap: clamp(1.5rem, 5vw, 4rem);
     row-gap: 0;
   }
@@ -741,6 +751,17 @@ main,
 .work-gallery figure { margin: 0; }
 .work-gallery img { display: block; width: 100%; border-radius: 8px; border: 1px solid var(--line); }
 #work-root:empty::before { content: ""; display: block; height: 20rem; border-radius: 12px; background: var(--skeleton); animation: pulse 1.4s ease-in-out infinite; }
+
+/* ปีของงาน (การ์ดหน้า Build และหน้างาน) */
+.work-year { color: var(--muted); font-size: .85rem; }
+
+/* ตัวเลือกสลับแบบทดลองในหน้างาน (dropdown) */
+.variant-note { margin: 0 0 .75rem; color: var(--muted); font-size: .9rem; }
+.variant-bar { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .75rem; margin: 0 0 .75rem; }
+.variant-label { color: var(--muted); font-size: .9rem; }
+.variant-select { font: inherit; font-size: .95rem; color: var(--text); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: .4rem .8rem; cursor: pointer; }
+.variant-select:hover { border-color: var(--text); }
+.variant-preview { display: block; max-width: 100%; margin: 0 0 .75rem; border-radius: 8px; border: 1px solid var(--line); }
 
 @media (prefers-reduced-motion: reduce) {
 

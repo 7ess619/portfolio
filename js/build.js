@@ -34,6 +34,7 @@
     }
     c.appendChild(ph);
     c.appendChild(el("h3", "", item.title));
+    if (item.year) c.appendChild(el("span", "work-year", item.year));
     if (item.role) c.appendChild(el("span", "work-role", item.role));
     if (item.status) c.appendChild(el("span", "thumb-status", item.status));
     // ลิงก์ไปหน้างาน: แสดงเมื่อสร้างหน้านั้นแล้ว (ใส่ page ใน data.js) ยังไม่มีหน้า = ไม่แสดง ไม่มีลิงก์เสีย
