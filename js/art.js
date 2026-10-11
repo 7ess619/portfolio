@@ -15,7 +15,10 @@
     return e;
   }
   // path ใน data.js เป็นแบบจากรากเว็บ: หน้าในโฟลเดอร์ย่อยต้องเติม ../ ให้
-  function u(path) { return path ? P + path : ""; }
+  function u(path) {
+    if (!path) return "";
+    return /^(?:[a-z][a-z0-9+.-]*:|\/\/)/i.test(path) ? path : P + path;
+  }
   function pic(src, alt, lazy) {
     var im = new Image();
     im.alt = alt || "";
@@ -116,6 +119,7 @@
 
     // ภาพหลัก (เช่น lineup): แสดงเมื่อมีภาพจริงเท่านั้น
     if (item.image) {
+      box.classList.add("art-spread"); // มีภาพกว้าง: ให้ข้อความกว้างเท่าภาพ ไม่แคบเป็นแถบเดียว
       var hero = el("div", "art-hero" + (item.lightFrame ? " art-frame art-pad" : ""));
       hero.appendChild(pic(item.image, item.imageAlt, false));
       box.appendChild(hero);
@@ -176,7 +180,7 @@
     if (item.extra && item.extra.items && item.extra.items.length) {
       var ex = section(item.extra.title);
       ex.classList.add("wide");
-      if (item.extra.note) ex.appendChild(el("p", "art-caption", item.extra.note));
+      if (item.extra.note) ex.appendChild(el("p", "art-note", item.extra.note));
       var eg = el("div", "work-gallery");
       item.extra.items.forEach(function (x) {
         eg.appendChild(figure({ image: x.image, alt: x.alt, caption: (x.character ? x.character + " · " : "") + "สไตล์อื่น" }, false));

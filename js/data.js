@@ -102,7 +102,7 @@ window.SITE = {
         {
           title: "Personal Project",
           role: "Character design · OC 9 ตัว",
-          status: "แฟนอาร์ต · No Straight Roads",
+          status: "Fan character · NSR",
           href: "art/personal-project.html",
           image: "img/art/personal-project-thumb.webp",
           imageAlt: "ตัวละคร OC ของอินทุอร ได้แก่ Otty, Victoria และ Capi-Tune",
@@ -111,6 +111,23 @@ window.SITE = {
           title: "Punchy",
           role: "ตัวละครแมว · ภาพประกอบเล่าเรื่อง + สติกเกอร์ LINE",
           href: "art/punchy.html",
+          image: "",
+          imageAlt: "",
+        },
+        // ช่อง 3–4: ยังไม่มีภาพ จึงลิงก์ไปหน้า Art รวมไว้ก่อน (ไม่ลิงก์ไปหน้าที่ยังว่าง)
+        // พอมีภาพแล้วใส่ image และเปลี่ยน href เป็น "art/drawing-hobby.html" / "art/general.html"
+        {
+          title: "Drawing Hobby",
+          role: "ภาพวาดต่อเนื่องตั้งแต่ 2025",
+          status: "แฟนอาร์ต · No Straight Roads",
+          href: "art.html",
+          image: "",
+          imageAlt: "",
+        },
+        {
+          title: "General",
+          role: "ภาพวาดทั่วไป",
+          href: "art.html",
           image: "",
           imageAlt: "",
         },
@@ -421,9 +438,9 @@ window.SITE = {
             slug: "personal-project",
             page: "art/personal-project.html",
             role: "Character design · OC 9 ตัว",
-            status: "แฟนอาร์ต · No Straight Roads",
-            desc: "ตัวละคร OC (ตัวละครต้นฉบับของฉัน) 9 ตัว ที่ออกแบบขึ้นเองสำหรับเกม No Straight Roads ตัวที่มีชุด breakdown (moodboard, concept, costume, references) จะเปิดดูได้ทีละตัวเมื่อทำเสร็จ",
-            notice: "แฟนอาร์ต: โลกและเกม No Straight Roads เป็นของเจ้าของต้นฉบับ ส่วนตัวละคร OC และงานออกแบบในหน้านี้เป็นของ อินทุอร ธีรางกูร",
+            status: "Fan character · NSR",
+            desc: "ตัวละคร OC (ตัวละครต้นฉบับของฉัน) 9 ตัว ที่ออกแบบเองให้อยู่ในโลกของเกม No Straight Roads (NSR) ตัวที่มีชุด breakdown (moodboard, concept, costume, references) จะเปิดดูได้ทีละตัวเมื่อทำเสร็จ",
+            notice: "Fan character: ตัวละครที่ฉันออกแบบเองให้อยู่ในโลกของเกม No Straight Roads (NSR) โลกและเกมเป็นของเจ้าของต้นฉบับ ส่วนตัวละครและงานออกแบบในหน้านี้เป็นของ อินทุอร ธีรางกูร",
             image: "img/art/personal-project-lineup.webp",
             imageAlt: "ภาพรวมตัวละคร OC 9 ตัวยืนเรียงแถว",
             imageRatio: "2000 / 488",
@@ -490,6 +507,22 @@ window.SITE = {
               },
             ],
             links: [], // ใส่ลิงก์ร้านสติกเกอร์ LINE ที่เช็กแล้วว่าเปิดได้จริง
+          },
+        ],
+      },
+      {
+        title: "General",
+        items: [
+          {
+            title: "General",
+            slug: "general",
+            page: "art/general.html",
+            role: "ภาพวาดทั่วไป",
+            desc: "ภาพวาดทั่วไปที่ไม่ได้อยู่ในชุดตัวละครหรือภาพประกอบเรื่องด้านบน",
+            image: "",
+            gallery: [], // ใส่ { image, alt, caption } เมื่อเลือกภาพแล้ว (caption ควรบอกถ้าเป็นแฟนอาร์ต/ตัวละครต้นฉบับ) มีภาพเมื่อไหร่ส่วนนี้โผล่เอง
+            sections: [],
+            links: [],
           },
         ],
       },

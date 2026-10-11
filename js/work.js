@@ -4,6 +4,9 @@
   var $ = function (id) { return document.getElementById(id); };
   var slug = document.body.getAttribute("data-work");
 
+  // path ภาพใน data.js เป็นแบบจากรากเว็บ: หน้าใน build/ ต้องถอย ../ (URL เต็ม/data: ใช้ตามเดิม)
+  function up(p) { return /^(?:[a-z][a-z0-9+.-]*:|\/\/)/i.test(p) ? p : "../" + p; }
+
   function el(tag, cls, text) {
     var e = document.createElement(tag);
     if (cls) e.className = cls;
@@ -43,7 +46,7 @@
       var img = new Image();
       img.alt = alt || "";
       img.onload = function () { wrap.classList.remove("loading"); };
-      img.src = "../" + src;
+      img.src = up(src);
       wrap.appendChild(img);
     } else {
       wrap.textContent = S.ui.placeholder;
@@ -147,7 +150,7 @@
         vsec.iframe.src = v.embed;
         vsec.open.href = v.figma;
         pv.alt = v.label;
-        if (v.preview) { pv.src = "../" + v.preview; pv.hidden = false; } else { pv.removeAttribute("src"); pv.hidden = true; }
+        if (v.preview) { pv.src = up(v.preview); pv.hidden = false; } else { pv.removeAttribute("src"); pv.hidden = true; }
       }
       sel.addEventListener("change", function () { pick(parseInt(sel.value, 10)); });
       pick(0);
@@ -192,7 +195,7 @@
         var im = new Image();
         im.alt = g.alt || "";
         im.loading = "lazy";
-        im.src = "../" + g.image;
+        im.src = up(g.image);
         fig.appendChild(im);
         gal.appendChild(fig);
       });

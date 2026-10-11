@@ -773,10 +773,13 @@ main,
 .art-hero img { display: block; width: 100%; height: auto; border-radius: 8px; }
 .art-process img { display: block; width: 100%; height: auto; border-radius: 8px; }
 .art-notice { margin: 0 0 1.5rem; padding: .75rem 1rem; max-width: 62ch; border: 1px solid var(--line); border-radius: 10px; color: var(--muted); font-size: .9rem; }
-.art-caption { margin: .5rem 0 0; color: var(--muted); font-size: .9rem; }
+.art-caption { margin: .5rem 0 0; color: var(--muted); font-size: .9rem; text-align: center; } /* คำบรรยายใต้ภาพ: อยู่กึ่งกลางภาพ */
+.art-note { margin: 0 0 .75rem; color: var(--muted); font-size: .9rem; } /* โน้ตนำหน้าส่วนภาพ (ไม่ใช่ใต้ภาพ) ชิดซ้ายเหมือนหัวข้อ */
 .art-chars { list-style: none; margin: .25rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: .5rem; }
 .art-chars li { margin: 0; padding: .1rem .85rem; background: var(--surface); border: 1px solid var(--line); border-radius: 999px; font-size: .9rem; }
 .art-chars a { text-underline-offset: 4px; }
+.work-section .art-chars { padding-left: 0; } /* กันสไตล์ list ของหน้า Build ทับ (ทำให้แถวชื่อเยื้อง) */
+.art-spread .work-lead, .art-spread .art-notice, .art-spread .work-section { max-width: none; }
 .work-gallery .art-frame { padding: .4rem; }
 .work-gallery .art-pad img { border-radius: 6px; }
 
