@@ -62,7 +62,7 @@ window.SITE = {
         {
           title: "Eye-Tracking UX Research (ธีสิส)",
           role: "ทีม 3 คน · หัวหน้าโปรเจกต์ + UX/UI Mockup",
-          status: "อยู่ระหว่างดำเนินการ",
+          status: "งานเรียน · อยู่ระหว่างดำเนินการ",
           href: "build.html",
           image: "",
           imageAlt: "",
@@ -70,6 +70,7 @@ window.SITE = {
         {
           title: "Cardfight Vanguard Arena",
           role: "ทีม 3 คน · UX/UI ร่วมกับเพื่อน + Front-end เป็นหลัก",
+          status: "งานเรียน",
           href: "build.html",
           image: "",
           imageAlt: "",
@@ -77,6 +78,7 @@ window.SITE = {
         {
           title: "Elementaria Sanctitude",
           role: "ทีม 5 คน · ออกแบบและประกอบชิ้นงาน",
+          status: "งานเรียน",
           href: "build.html",
           image: "",
           imageAlt: "",
@@ -84,7 +86,7 @@ window.SITE = {
         {
           title: "Your Houng",
           role: "ทีม 7 คน · ออกแบบโลโก้และธีมสี + ร่วมคิดฟีเจอร์",
-          status: "ต้นแบบ Figma",
+          status: "งานเรียน · ต้นแบบ Figma",
           href: "build.html",
           image: "",
           imageAlt: "",
@@ -95,37 +97,20 @@ window.SITE = {
       title: "Art",
       desc: "Character design และภาพประกอบ",
       href: "art.html",
-      // role = ประเภทงาน · ปี / status = ที่มาของงาน (คอมมิชชัน / งานส่วนตัว / แฟนอาร์ต / วางขายแล้ว)
+      // งาน Art ที่ขึ้นหน้าแรก: เพิ่มได้เมื่อมีภาพจริง (ไม่ใส่ช่องแม่แบบ) ภาพย่อไว้ที่ img/art/
       items: [
         {
-          title: "Character design",
-          role: "ประเภทงาน · ปี",
-          status: "ที่มาของงาน",
-          href: "art.html",
-          image: "",
-          imageAlt: "",
+          title: "Personal Project",
+          role: "Character design · OC 9 ตัว",
+          status: "แฟนอาร์ต · No Straight Roads",
+          href: "art/personal-project.html",
+          image: "img/art/personal-project-thumb.webp",
+          imageAlt: "ตัวละคร OC ของอินทุอร ได้แก่ Otty, Victoria และ Capi-Tune",
         },
         {
-          title: "Punchy: Coming Your Way",
-          role: "ภาพประกอบเล่าเรื่อง · 2024 · งานเดี่ยว",
-          status: "งานเรียน MAT102",
-          href: "art.html",
-          image: "",
-          imageAlt: "",
-        },
-        {
-          title: "ภาพประกอบ 2",
-          role: "ประเภทงาน · ปี",
-          status: "ที่มาของงาน",
-          href: "art.html",
-          image: "",
-          imageAlt: "",
-        },
-        {
-          title: "สติกเกอร์ LINE",
-          role: "ประเภทงาน · ปี",
-          status: "ที่มาของงาน",
-          href: "art.html",
+          title: "Punchy",
+          role: "ตัวละครแมว · ภาพประกอบเล่าเรื่อง + สติกเกอร์ LINE",
+          href: "art/punchy.html",
           image: "",
           imageAlt: "",
         },
@@ -196,7 +181,7 @@ window.SITE = {
             { label: "แบบ D", figma: "", preview: "" },
           ],
           role: "ทีม 3 คน · หัวหน้าโปรเจกต์ + UX/UI Mockup",
-          status: "อยู่ระหว่างดำเนินการ",
+          status: "งานเรียน · อยู่ระหว่างดำเนินการ",
           image: "",
           imageAlt: "",
           links: [],
@@ -231,6 +216,7 @@ window.SITE = {
           ],
           figma: "",
           role: "ทีม 3 คน · UX/UI ร่วมกับเพื่อน + Front-end เป็นหลัก",
+          status: "งานเรียน",
           image: "",
           imageAlt: "",
           links: [],
@@ -253,6 +239,7 @@ window.SITE = {
           ],
           figma: "",
           role: "ทีม 3 คน · ริเริ่มไอเดีย + ช่วยฝั่งฮาร์ดแวร์",
+          status: "งานเรียน",
           image: "",
           imageAlt: "",
           links: [],
@@ -275,6 +262,7 @@ window.SITE = {
           ],
           figma: "",
           role: "ทีม 5 คน · ออกแบบและประกอบชิ้นงาน",
+          status: "งานเรียน",
           image: "",
           imageAlt: "",
           links: [],
@@ -324,7 +312,7 @@ window.SITE = {
           desc: "แนวคิดแอปสำหรับดูฮวงจุ้ย กลุ่มเป้าหมายวัยกลางคนอายุ 40–60 ปี มีฟังก์ชันเลือกซินแส ดูสีมงคลประจำวัน คุยปรึกษากับซินแส และจำลองแปลนบ้าน ออกแบบเป็นต้นแบบ (prototype) ใน Figma พร้อมชุดสื่อโฆษณาจำลอง ยังไม่ได้เปิดตัวจริง บทบาท: ออกแบบโลโก้และธีมสี และร่วมคิดฟีเจอร์",
           figma: "https://www.figma.com/proto/wmPB18VFHlG7zpUxUr1mdk?node-id=3-135",
           role: "ทีม 7 คน · ออกแบบโลโก้และธีมสี + ร่วมคิดฟีเจอร์",
-          status: "ต้นแบบ Figma",
+          status: "งานเรียน · ต้นแบบ Figma",
           image: "",
           imageAlt: "",
           links: [],
@@ -415,6 +403,132 @@ window.SITE = {
       },
     ],
   },
+  // หน้า Art (art.html + art/*.html): เรียงใหม่ → เก่า (ยกเว้นส่วนวิวัฒนาการที่เล่าตามเวลา)
+  // รายการจะ "แสดง" ก็ต่อเมื่อมี image, gallery หรือ sections อย่างน้อยหนึ่งอย่าง (ไม่มีเนื้อหา = ไม่โชว์ ไม่มีหน้าว่าง)
+  // ภาพทั้งหมดใส่ path แบบจากรากเว็บ เช่น "img/art/xxx.webp" (หน้าในโฟลเดอร์ art/ จะเติม ../ ให้เอง)
+  // image + imageRatio ("กว้าง / สูง") = ภาพกว้างเต็มแถว / lightFrame: true = ภาพพื้นขาววางในกรอบสีอ่อน
+  // gallery = [{ image, alt, caption }] / characters = [{ name, slug, page }] (page ว่าง = ยังไม่มีหน้า ไม่มีลิงก์)
+  // process = { title, caption, image, still, alt } / extra = { title, note, items: [{ image, alt, character }] }
+  art: {
+    title: "Art",
+    intro: "Character design และภาพประกอบ",
+    groups: [
+      {
+        title: "Character design",
+        items: [
+          {
+            title: "Personal Project",
+            slug: "personal-project",
+            page: "art/personal-project.html",
+            role: "Character design · OC 9 ตัว",
+            status: "แฟนอาร์ต · No Straight Roads",
+            desc: "ตัวละคร OC (ตัวละครต้นฉบับของฉัน) 9 ตัว ที่ออกแบบขึ้นเองสำหรับเกม No Straight Roads ตัวที่มีชุด breakdown (moodboard, concept, costume, references) จะเปิดดูได้ทีละตัวเมื่อทำเสร็จ",
+            notice: "แฟนอาร์ต: โลกและเกม No Straight Roads เป็นของเจ้าของต้นฉบับ ส่วนตัวละคร OC และงานออกแบบในหน้านี้เป็นของ อินทุอร ธีรางกูร",
+            image: "img/art/personal-project-lineup.webp",
+            imageAlt: "ภาพรวมตัวละคร OC 9 ตัวยืนเรียงแถว",
+            imageRatio: "2000 / 488",
+            lightFrame: true,
+            charactersTitle: "ตัวละครใน lineup",
+            characters: [
+              { name: "ตัวแทนของฉัน", slug: "", page: "" }, // TODO: ใส่ชื่อตัวละครของเจ้าของเว็บ
+              { name: "Austin", slug: "", page: "" },
+              { name: "Otty the AI Arcade", slug: "otty-the-ai-arcade", page: "" },
+              { name: "Victoria", slug: "victoria", page: "" },
+              { name: "Capi-Tune", slug: "capi-tune", page: "" },
+              { name: "Conie", slug: "", page: "" },
+              { name: "Skye", slug: "", page: "" },
+              { name: "Leopard", slug: "", page: "" },
+              { name: "Rowan", slug: "", page: "" },
+            ],
+            process: {
+              title: "ขั้นตอนการวาด lineup",
+              caption: "ตั้งแต่ร่าง ตัดเส้น ซิลูเอตต์เงา ไปจนลงสีเสร็จ",
+              image: "img/art/personal-project-process.webp",
+              still: "img/art/personal-project-process-still.webp",
+              alt: "ภาพเคลื่อนไหวแสดงขั้นตอนการวาด lineup ตัวละคร ตั้งแต่ร่างจนลงสีเสร็จ",
+            },
+            // ภาพเพิ่มเติม: ภาพที่ลองวาดตัวละครในสไตล์อื่น (ใส่ items เมื่อวาดเสร็จ ว่างอยู่ = ไม่แสดงส่วนนี้)
+            extra: { title: "ภาพเพิ่มเติม", note: "ภาพที่ลองวาดตัวละครในสไตล์อื่น", items: [] },
+            sections: [],
+            links: [],
+          },
+        ],
+      },
+      {
+        title: "ภาพประกอบ",
+        items: [
+          {
+            title: "Drawing Hobby",
+            slug: "drawing-hobby",
+            page: "art/drawing-hobby.html",
+            year: "2025–ปัจจุบัน",
+            role: "ภาพวาดต่อเนื่อง",
+            status: "แฟนอาร์ต · No Straight Roads",
+            desc: "ภาพที่วาดต่อเนื่องตั้งแต่ปี 2025 จนถึงปัจจุบัน เป็นภาพ Victoria (ตัวละคร OC ของฉัน) คู่กับตัวละครที่มีอยู่แล้วในเกม No Straight Roads",
+            notice: "แฟนอาร์ต: ตัวละครจากเกม No Straight Roads เป็นของเจ้าของต้นฉบับ ส่วน Victoria เป็นตัวละคร OC ของ อินทุอร ธีรางกูร",
+            image: "",
+            gallery: [], // ใส่ { image, alt, caption } เมื่อเลือกภาพแล้ว มีภาพเมื่อไหร่การ์ดนี้จะโผล่ที่หน้า Art เอง
+            sections: [],
+            links: [],
+          },
+          {
+            title: "Punchy",
+            slug: "punchy",
+            page: "art/punchy.html",
+            role: "ตัวละครแมว · ภาพประกอบเล่าเรื่อง + สติกเกอร์ LINE",
+            desc: "Punchy ตัวละครแมวของฉัน ปรากฏในภาพประกอบเล่าเรื่องงานเรียน (2024) และชุดสติกเกอร์ LINE ที่วางขายแล้ว",
+            image: "",
+            imageAlt: "",
+            sections: [
+              {
+                title: "ภาพประกอบเล่าเรื่อง · Punchy: Coming Your Way (2024 · งานเรียน MAT102 · งานเดี่ยว)",
+                text: "ภาพประกอบเล่าเรื่องการบำบัดด้วยสัตว์เลี้ยงสำหรับผู้ป่วยโรคซึมเศร้า ออกแบบตัวละครและเล่าเรื่องผ่านภาพ ตั้งแต่ขั้น Brief จนถึง Final Artwork เป็นการเล่าเรื่องผ่านภาพประกอบ ไม่ใช่การบำบัดทางการแพทย์ ใช้โปรแกรม Clip Studio Paint",
+              },
+              {
+                title: "สติกเกอร์ LINE (วางขายแล้ว)",
+                text: "ชุดสติกเกอร์ LINE ของ Punchy วางขายแล้ว",
+              },
+            ],
+            links: [], // ใส่ลิงก์ร้านสติกเกอร์ LINE ที่เช็กแล้วว่าเปิดได้จริง
+          },
+        ],
+      },
+      {
+        title: "ภาพอื่นๆ / Motion",
+        items: [
+          {
+            title: "Speed paint",
+            slug: "speed-paint",
+            role: "Concept art",
+            status: "แฟนอาร์ต",
+            image: "",
+            imageAlt: "",
+          },
+          {
+            title: "Doodle / PNGTuber assets",
+            slug: "doodle-pngtuber",
+            status: "งานเรียน",
+            image: "",
+            imageAlt: "",
+          },
+        ],
+      },
+      {
+        title: "ก่อนเข้ามหาวิทยาลัย",
+        items: [
+          {
+            title: "วิวัฒนาการ 2018 → 2023",
+            slug: "evolution",
+            role: "ภาพรวมงานวาดก่อนเข้ามหาวิทยาลัย เรียงเก่า → ใหม่",
+            status: "รวมแฟนอาร์ตและงานตัวละครต้นฉบับ",
+            image: "",
+            imageAlt: "",
+            lightFrame: true,
+          },
+        ],
+      },
+    ],
+  },
   // ลิงก์ที่ href เป็น "" จะไม่แสดง (GitHub ใส่หลังเก็บกวาดเสร็จ)
   links: [
     { label: "Twitter/X", href: "https://x.com/7ess_619" },
@@ -440,6 +554,8 @@ window.SITE = {
     figmaOpen: "เปิดใน Figma",
     detailLink: "ดูรายละเอียด →",
     backBuild: "← Build",
+    backArt: "← Art",
+    charsTitle: "ตัวละคร",
     figmaTitle: "ต้นแบบ (Figma)",
     variantsTitle: "ลองดูแบบทดลอง",
     variantPick: "เลือกแบบทดลอง",

@@ -763,6 +763,23 @@ main,
 .variant-select:hover { border-color: var(--text); }
 .variant-preview { display: block; max-width: 100%; margin: 0 0 .75rem; border-radius: 8px; border: 1px solid var(--line); }
 
+/* หน้า Art: ชื่อคลาสขึ้นต้น art- เพื่อไม่ชนกับหน้าอื่น */
+.art-wide { grid-column: 1 / -1; }
+.art-frame { background: #ffffff; border-radius: 12px; } /* ภาพพื้นขาววางในกรอบสีอ่อนเสมอ (ทั้งโหมดสว่าง/มืด) */
+.art-pad { padding: .6rem; }
+.art-frame img { background: #ffffff; }
+.work .ph.art-frame img { object-fit: contain; }
+.art-hero { margin: 0 0 2rem; }
+.art-hero img { display: block; width: 100%; height: auto; border-radius: 8px; }
+.art-process img { display: block; width: 100%; height: auto; border-radius: 8px; }
+.art-notice { margin: 0 0 1.5rem; padding: .75rem 1rem; max-width: 62ch; border: 1px solid var(--line); border-radius: 10px; color: var(--muted); font-size: .9rem; }
+.art-caption { margin: .5rem 0 0; color: var(--muted); font-size: .9rem; }
+.art-chars { list-style: none; margin: .25rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: .5rem; }
+.art-chars li { margin: 0; padding: .1rem .85rem; background: var(--surface); border: 1px solid var(--line); border-radius: 999px; font-size: .9rem; }
+.art-chars a { text-underline-offset: 4px; }
+.work-gallery .art-frame { padding: .4rem; }
+.work-gallery .art-pad img { border-radius: 6px; }
+
 @media (prefers-reduced-motion: reduce) {
 
   .ph.loading,
