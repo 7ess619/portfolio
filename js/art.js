@@ -27,9 +27,9 @@
     im.src = u(src);
     return im;
   }
-  // รายการจะแสดงเมื่อมีเนื้อหาอย่างน้อยหนึ่งอย่าง (ไม่มีเนื้อหา = ไม่โชว์)
+  // รายการจะขึ้นบน art.html เมื่อมีภาพจริง (ไม่มีภาพ = ไม่โชว์ ไม่มีกรอบเปล่า)
   function ready(it) {
-    return !!(it.image || (it.gallery && it.gallery.length) || (it.sections && it.sections.length));
+    return !!(it.image || (it.row && it.row.length) || (it.gallery && it.gallery.length));
   }
   function cover(it) {
     return it.image || (it.gallery && it.gallery[0] && it.gallery[0].image) || "";
@@ -38,32 +38,36 @@
   $("site-name").textContent = S.name;
   $("note").textContent = S.note;
 
-  // ---------- หน้า Art (รวมทุกหมวด) ----------
-  function card(it) {
-    var c = el("article", "work");
-    var ph = el("div", "ph");
-    var src = cover(it);
-    if (it.imageRatio) { c.classList.add("art-wide"); ph.style.aspectRatio = it.imageRatio; }
-    if (it.lightFrame) ph.classList.add("art-frame");
-    if (src) {
-      ph.classList.add("loading");
-      var im = pic(src, it.imageAlt || (it.gallery && it.gallery[0] && it.gallery[0].alt));
-      im.onload = function () { ph.classList.remove("loading"); };
-      ph.appendChild(im);
+  // ---------- หน้า Art (รวมทุกหมวด): ภาพเต็มกึ่งกลาง + คำบรรยายเล็กๆ ไม่ใช้การ์ด ----------
+  function piece(it) {
+    var fig = document.createElement("figure");
+    fig.className = "art-piece";
+    var wrap = el("div", it.lightFrame ? "art-frame art-pad" : "art-bare");
+    var first = it.gallery && it.gallery[0];
+    if (it.maxWidth) wrap.style.maxWidth = it.maxWidth; // ภาพแนวตั้ง/ภาพเล็ก จำกัดความกว้าง แล้วอยู่ตรงกลาง
+    if (it.row && it.row.length) {
+      // หลายภาพเป็นแถวเดียว: แบ่งความกว้างตามอัตราส่วนภาพ ความสูงจึงเท่ากัน
+      var row = el("div", "art-row");
+      it.row.forEach(function (c) {
+        var cell = el("div", "art-row-cell");
+        cell.style.flex = (c.ratio || 1) + " 1 0";
+        cell.appendChild(pic(c.image, c.alt));
+        row.appendChild(cell);
+      });
+      wrap.appendChild(row);
     } else {
-      ph.textContent = S.ui.placeholder;
+      wrap.appendChild(pic(cover(it), it.imageAlt || (first && first.alt) || it.title));
     }
-    c.appendChild(ph);
-    c.appendChild(el("h3", "", it.title));
-    if (it.year) c.appendChild(el("span", "work-year", it.year));
-    if (it.role) c.appendChild(el("span", "work-role", it.role));
-    if (it.status) c.appendChild(el("span", "thumb-status", it.status));
+    fig.appendChild(wrap);
+    var cap = el("figcaption", "art-caption", it.caption || it.title);
     if (it.page) {
-      var more = el("a", "work-detail-link", S.ui.detailLink);
-      more.href = u(it.page);
-      c.appendChild(more);
+      cap.appendChild(document.createTextNode(" · "));
+      var a = el("a", "", (it.gallery && it.gallery.length > 1) ? S.ui.viewAllImages : S.ui.detailLink);
+      a.href = u(it.page);
+      cap.appendChild(a);
     }
-    return c;
+    fig.appendChild(cap);
+    return fig;
   }
 
   // ---------- หน้ารายละเอียด (หมวด / ตัวละคร / งาน) ----------
@@ -123,6 +127,7 @@
       var hero = el("div", "art-hero" + (item.lightFrame ? " art-frame art-pad" : ""));
       hero.appendChild(pic(item.image, item.imageAlt, false));
       box.appendChild(hero);
+      if (item.imageCaption) box.appendChild(el("p", "art-caption art-hero-caption", item.imageCaption));
     }
 
     // รายชื่อตัวละคร: มี page = เป็นลิงก์ (ตัวที่ breakdown เสร็จ) ไม่มี = ชื่อเฉยๆ
@@ -212,16 +217,29 @@
     $("back").textContent = S.ui.back;
     $("page-h").textContent = A.title;
     $("page-intro").textContent = A.intro;
-    A.groups.forEach(function (g) {
+    var jumps = []; // รายการส่วนที่แสดงจริง ใช้ทำแถบลิงก์ข้ามส่วน
+    A.groups.forEach(function (g, gi) {
       var items = g.items.filter(ready);
       if (!items.length) return;
-      var sec = el("section", "work-group");
+      var sec = el("section", "work-group art-flow");
+      sec.id = "art-sec-" + gi;
+      jumps.push({ id: sec.id, label: g.navLabel || g.title });
       sec.appendChild(el("h2", "", g.title));
-      var grid = el("div", "work-grid");
-      items.forEach(function (it) { grid.appendChild(card(it)); });
-      sec.appendChild(grid);
+      if (g.note) sec.appendChild(el("p", "art-note", g.note));
+      items.forEach(function (it) { sec.appendChild(piece(it)); });
       $("groups").appendChild(sec);
     });
+    // แถบลิงก์ข้ามส่วน: แสดงเมื่อมี 2 ส่วนขึ้นไป (ส่วนที่ซ่อนอยู่เพราะยังไม่มีภาพจะไม่ขึ้น)
+    if (jumps.length > 1) {
+      var nav = el("nav", "art-jump");
+      nav.setAttribute("aria-label", S.ui.jumpLabel);
+      jumps.forEach(function (j) {
+        var l = el("a", "", j.label);
+        l.href = "#" + j.id;
+        nav.appendChild(l);
+      });
+      $("groups").parentNode.insertBefore(nav, $("groups"));
+    }
   } else {
     renderDetail();
   }

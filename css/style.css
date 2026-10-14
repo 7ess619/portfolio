@@ -772,6 +772,27 @@ main,
 .art-hero { margin: 0 0 2rem; }
 .art-hero img { display: block; width: 100%; height: auto; border-radius: 8px; }
 .art-process img { display: block; width: 100%; height: auto; border-radius: 8px; }
+.work .ph.art-contain { background: #000; } /* ภาพพื้นดำ: แสดงเต็มภาพ ไม่ครอป */
+.work .ph.art-contain img { object-fit: contain; }
+/* หน้า Art: ภาพเต็มกึ่งกลาง + คำบรรยายเล็กๆ ใต้ภาพ (ไม่ใช้การ์ด) */
+.art-flow .art-piece { margin: 0 0 3rem; }
+.art-piece .art-bare, .art-piece .art-frame { margin: 0 auto; max-width: 44rem; } /* ค่าเริ่มต้น: ไม่ใหญ่เต็มคอลัมน์ (ตั้ง maxWidth ต่อภาพใน data.js ทับได้) */
+.art-piece .art-bare img, .art-piece .art-frame img { display: block; max-width: 100%; height: auto; margin: 0 auto; border-radius: 8px; }
+/* แถบลิงก์ข้ามส่วนบนหน้า Art */
+.art-jump { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0 0 2rem; }
+.art-jump a { display: inline-block; padding: .25rem .95rem; color: var(--muted); font-size: .9rem; text-decoration: none; border: 1px solid var(--line); border-radius: 999px; }
+.art-jump a:hover { color: var(--text); border-color: var(--text); }
+.art-flow { scroll-margin-top: 1rem; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+.art-row { display: flex; align-items: flex-start; gap: .75rem; }
+.art-row-cell { min-width: 0; }
+@media (max-width: 600px) {
+  .art-row { flex-direction: column; align-items: stretch; }
+  .art-row-cell { flex: none !important; } /* จอแคบ: ซ้อนลงมา ภาพละบรรทัด */
+}
+.art-piece .art-caption { max-width: 62ch; margin: .75rem auto 0; line-height: 1.6; }
+.art-piece .art-caption a { text-underline-offset: 4px; }
+.art-hero-caption { margin: -1.25rem 0 2rem; } /* คำบรรยายใต้ภาพหลัก ชิดภาพมากกว่าช่องไฟปกติ */
 .art-notice { margin: 0 0 1.5rem; padding: .75rem 1rem; max-width: 62ch; border: 1px solid var(--line); border-radius: 10px; color: var(--muted); font-size: .9rem; }
 .art-caption { margin: .5rem 0 0; color: var(--muted); font-size: .9rem; text-align: center; } /* คำบรรยายใต้ภาพ: อยู่กึ่งกลางภาพ */
 .art-note { margin: 0 0 .75rem; color: var(--muted); font-size: .9rem; } /* โน้ตนำหน้าส่วนภาพ (ไม่ใช่ใต้ภาพ) ชิดซ้ายเหมือนหัวข้อ */
@@ -780,8 +801,89 @@ main,
 .art-chars a { text-underline-offset: 4px; }
 .work-section .art-chars { padding-left: 0; } /* กันสไตล์ list ของหน้า Build ทับ (ทำให้แถวชื่อเยื้อง) */
 .art-spread .work-lead, .art-spread .art-notice, .art-spread .work-section { max-width: none; }
+.work-detail.art-spread { max-width: none; } /* มีภาพกว้าง: ใช้ความกว้างเต็มเท่า header/footer ไม่ชิดซ้ายเป็นแถบแคบ (ทำให้หน้าดูไม่อยู่กึ่งกลาง) */
 .work-gallery .art-frame { padding: .4rem; }
 .work-gallery .art-pad img { border-radius: 6px; }
+
+/* ===== โครงการ์ดคงที่ (ไม่ขยายตามเนื้อหา) =====
+   แต่ละส่วนของการ์ดมี "ช่อง" ความสูงตายตัวด้วย grid: ภาพ / ชื่อ (2 บรรทัด) / บทบาท (2 บรรทัด) / ป้าย (1 บรรทัด)
+   ข้อความที่ยาวเกินจะถูกตัดด้วย … ส่วนที่ไม่มี (เช่นไม่มีป้าย) ช่องยังอยู่ ภาพและข้อความของทุกใบจึงตรงกันเสมอ
+   ถ้าเปลี่ยนขนาดฟอนต์ของส่วนไหน ให้ปรับความสูงของช่องนั้นให้เท่ากับ จำนวนบรรทัด × line-height × ขนาดฟอนต์ */
+
+/* การ์ดย่อบนหน้าแรก (.thumb) */
+.thumb {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto 2.55rem 2.4rem 1.7rem;
+  align-items: start;
+  align-content: start;
+}
+.thumb .ph { grid-row: 1; }
+.thumb-title,
+.thumb-role {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  line-height: 1.5;
+}
+.thumb-title { grid-row: 2; }
+.thumb-role { grid-row: 3; }
+.thumb .thumb-status {
+  grid-row: 4;
+  justify-self: start;
+  max-width: 100%;
+  margin-top: .2rem;
+  line-height: 1.5;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* การ์ดงานบนหน้า Build / Art (.work) */
+.work {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto 3.1rem 1.3rem 2.7rem 1.7rem 1.7rem auto;
+  align-content: start;
+  align-items: start;
+  row-gap: .15rem;
+}
+.work .ph { grid-row: 1; }
+.work h3 {
+  grid-row: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+.work .work-year {
+  grid-row: 3;
+  min-width: 0;
+  line-height: 1.5;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.work .work-role {
+  grid-row: 4;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  line-height: 1.5;
+}
+.work .thumb-status {
+  grid-row: 5;
+  justify-self: start;
+  max-width: 100%;
+  line-height: 1.5;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.work .work-detail-link { grid-row: 6; justify-self: start; }
+.work .work-links { grid-row: 7; }
 
 @media (prefers-reduced-motion: reduce) {
 

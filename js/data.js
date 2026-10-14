@@ -51,7 +51,7 @@ window.SITE = {
   },
   // ใส่ path ไฟล์เรซูเม่ (เช่น "files/resume.pdf") ปุ่มดาวน์โหลดจึงจะขึ้น
   resume: { label: "ดาวน์โหลดเรซูเม่", href: "" },
-  cta: { label: "ส่งอีเมล", href: "mailto:Indhuon.teer@kmutt.ac.th" },
+  cta: { label: "ส่งอีเมล", href: "mailto:indhuon.teer@gmail.com" },
   paths: [
     {
       title: "Build",
@@ -135,7 +135,7 @@ window.SITE = {
     },
   ],
   // หน้า Build (build.html): เรียงใหม่ → เก่า / role/status ใส่เฉพาะที่ยืนยันแล้ว ช่องที่ว่างจะไม่แสดง
-  // year = ปี · ปีการศึกษา (แสดงบนการ์ดและหน้างาน)
+  // year = ปี · ปีการศึกษา (เต็ม แสดงในหน้างาน) / yearShort = ปีแบบสั้น แสดงบนการ์ด (ไม่ใส่ = ใช้ year)
   // page = มีหน้างานของตัวเอง (ไม่ใส่ = การ์ดไม่มีปุ่ม)
   // sections = { title, text } หรือ { title, list } / figma = ลิงก์ Figma เดียว
   // variants = ตัวเลือกสลับแบบทดลอง (dropdown) { label, figma, preview } ช่องที่ figma ว่างจะไม่แสดง
@@ -153,6 +153,7 @@ window.SITE = {
           slug: "eye-tracking-research",
           page: "build/eye-tracking-research.html",
           year: "2026–ปัจจุบัน · ปีการศึกษาที่ 4",
+          yearShort: "2026–ปัจจุบัน",
           desc: "โครงการวิจัยธีสิส ชื่อเต็ม Interactive Website Design: An Eye-Tracking Study on the Impact of Art Direction and Confirmation Bias on User Decision-Making ศึกษาว่าการปรับความโดดเด่นของปุ่ม เมนู ป้ายสถานะ และช่องค้นหาในหน้าระบบเรียน LEB2 ส่งผลต่อการมองและการตัดสินใจของผู้ใช้อย่างไร วัดด้วย Eye-tracking (Tobii Pro Spark) และ Mouse-tracking โดยออกแบบการทดลองกับนักศึกษา 30 คน",
           sections: [
             {
@@ -208,6 +209,7 @@ window.SITE = {
           slug: "cardfight-vanguard-arena",
           page: "build/cardfight-vanguard-arena.html",
           year: "2025–2026 · ปีการศึกษาที่ 3",
+          yearShort: "2025–2026",
           desc: "ต้นแบบแพลตฟอร์ม Social Media สำหรับผู้เล่นการ์ดเกม Cardfight Vanguard เป็นพื้นที่ถามตอบ หาคนเล่น และซื้อขายการ์ด บทบาท: ออกแบบ UX/UI บน Figma ร่วมกับเพื่อน และพัฒนา Front-end เป็นหลัก เว็บเขียนด้วย HTML/CSS/JS",
           sections: [
             {
@@ -243,6 +245,7 @@ window.SITE = {
           slug: "smart-mouse-trap",
           page: "build/smart-mouse-trap.html",
           year: "ปลาย 2025 · ปีการศึกษาที่ 3",
+          yearShort: "2025",
           desc: "ผลิตภัณฑ์ต้นแบบกับดักหนูอัจฉริยะ ริเริ่มไอเดียและร่วมออกแบบหน้าตาผลิตภัณฑ์ ทำงานร่วมกับทีมที่พัฒนาระบบด้วย ESP32 เซนเซอร์ตรวจแรงกด และเซอร์โวมอเตอร์ ช่วยสนับสนุนงานฮาร์ดแวร์จนทดสอบสำเร็จ 9 ใน 10 ครั้ง",
           sections: [
             {
@@ -266,6 +269,7 @@ window.SITE = {
           slug: "elementaria-sanctitude",
           page: "build/elementaria-sanctitude.html",
           year: "2025–2026 (จัดแสดง 2026) · ปีการศึกษาที่ 3",
+          yearShort: "2025–2026",
           desc: "ชิ้นงาน Interactive ขนาด 30×40 ซม. เป็นโล่แสงไฟที่ pattern สีเปลี่ยนตามระยะที่คนเข้าใกล้ ได้แรงบันดาลใจจากการ์ดเกมใบหนึ่ง จัดแสดงในงาน Media Technology Project 2026 รับผิดชอบงานออกแบบและงานฝีมือทั้งหมด (ไม่รวมวงจร) ทำงานร่วมกับเพื่อนในทีมที่พัฒนาวงจรอิเล็กทรอนิกส์",
           sections: [
             {
@@ -288,6 +292,7 @@ window.SITE = {
           title: "Your Houng",
           slug: "your-houng",
           year: "2024 (เทอม 1) · ปีการศึกษาที่ 2",
+          yearShort: "2024",
           page: "build/your-houng.html",
           figmaRatio: "9 / 16", // สัดส่วนกรอบ Figma (กว้าง / สูง) ต้นแบบแอปมือถือใช้แนวตั้ง ต้นแบบเว็บใช้ "16 / 10"
           sections: [
@@ -339,6 +344,7 @@ window.SITE = {
           slug: "taobin-emotional-design",
           page: "build/taobin-emotional-design.html",
           year: "2023 · ปีการศึกษาที่ 1",
+          yearShort: "2023",
           desc: "งานเรียนวิชา MDT Interface ด้าน Emotional Design วิเคราะห์ interface ปัจจุบันของตู้เต่าบิน แล้วเสนอ interface ใหม่ที่ตรวจจับอุณหภูมิและสีหน้าเพื่อแนะนำเครื่องดื่มที่เหมาะสม สั่งด้วยเสียงได้ และมีมินิเกมระหว่างรอเครื่องดื่มเพื่อรับส่วนลดครั้งถัดไป พร้อมเปรียบเทียบการใช้งานของ interface เดิมกับใหม่ และสรุปผลจากการสัมภาษณ์ผู้ใช้ 4 คน บทบาท: คิดฟีเจอร์และตรวจสอบความถูกต้อง ส่วนงานออกแบบ UI ทั้งหมดทำโดยเพื่อนร่วมทีม (เป็นงานเรียน ไม่ได้เกี่ยวข้องกับแบรนด์)",
           sections: [
             {
@@ -406,16 +412,6 @@ window.SITE = {
           imageAlt: "",
           links: [],
         },
-        {
-          title: "BreadBird",
-          slug: "breadbird",
-          desc: "เกม Arcade สไตล์ Flappy Bird โปรเจกต์ส่วนตัว ภาพ asset ทั้งหมดวาดเอง (ทำก่อนเข้ามหาวิทยาลัย)",
-          figma: "",
-          role: "เกม Arcade สไตล์ Flappy Bird · โปรเจกต์ส่วนตัว",
-          image: "",
-          imageAlt: "",
-          links: [],
-        },
         ],
       },
     ],
@@ -431,6 +427,80 @@ window.SITE = {
     intro: "Character design และภาพประกอบ",
     groups: [
       {
+        title: "ภาพรวมงานวาด",
+        note: "ภาพรวมงานวาดแต่ละช่วง มีทั้งแฟนอาร์ตและตัวละครต้นฉบับของฉัน ตัวละครจากเกมหรือผลงานของผู้อื่นเป็นของเจ้าของต้นฉบับ",
+        items: [
+          // หน้า Art ไม่ใช้การ์ด: ทุกรายการวางเป็นภาพเต็มอยู่ตรงกลาง + caption (ข้อความเล็กใต้ภาพ) / maxWidth = ความกว้างสูงสุดของภาพ (ไม่ใส่ = 44rem ตามค่าเริ่มต้นใน style.css) ปรับตัวเลขให้ภาพเล็ก/ใหญ่ขึ้นได้
+          {
+            title: "2018–2023",
+            slug: "overall-2018-2023",
+            maxWidth: "44rem",
+            image: "img/art/overall-2018-2023.webp",
+            imageAlt: "ภาพรวมงานวาด 12 ภาพ ตั้งแต่ปี 2018 ถึง 2023 ครึ่งปีละ 1 ภาพ",
+            caption: "ภาพรวมงานวาด 2018–2023 ครึ่งปีละ 1 ภาพ รวม 12 ภาพ เรียงเก่า → ใหม่ จากซ้ายไปขวา แถวบนไปแถวล่าง (ข้อความในภาพเป็นภาษาเกาหลี หมายถึง \"สรุปงานวาด 5 ปี\")",
+          },
+          // row = ภาพหลายภาพเรียงเป็นแถวเดียว (ความสูงเท่ากัน) ratio = กว้าง/สูงของภาพ ใช้แบ่งความกว้างให้ความสูงเท่ากัน
+          // บนจอแคบ (≤600px) จะเรียงซ้อนลงมาเอง
+          {
+            title: "2023–2025",
+            slug: "overall-2023-2025",
+            maxWidth: "50rem",
+            row: [
+              {
+                image: "img/art/overall-2023-year-end.webp",
+                alt: "สรุปงานวาดปี 2023 รายเดือน ตั้งแต่มกราคมถึงพฤศจิกายน",
+                ratio: 0.72,
+              },
+              {
+                image: "img/art/overall-2025.webp",
+                alt: "งานวาดปี 2025 จำนวน 12 ภาพ เรียงเป็นตาราง 4 คอลัมน์ 3 แถว",
+                ratio: 1.44,
+              },
+            ],
+            caption: "ซ้าย: สรุปงานวาดปี 2023 รายเดือน (มกราคม–พฤศจิกายน) · ขวา: งานวาดปี 2025 (ปีการศึกษาที่ 3) รวม 12 ภาพ โปรแกรมที่ใช้: Adobe Animate และ Clip Studio Paint",
+          },
+        ],
+      },
+      {
+        title: "ภาพประกอบ",
+        items: [
+          {
+            title: "Punchy",
+            slug: "punchy",
+            page: "art/punchy.html",
+            role: "ตัวละครแมว · ภาพประกอบเล่าเรื่อง + สติกเกอร์ LINE",
+            desc: "Punchy ตัวละครแมวของฉัน ปรากฏในภาพประกอบเล่าเรื่องงานเรียน (2024) และชุดสติกเกอร์ LINE ที่วางขายแล้ว",
+            image: "",
+            imageAlt: "",
+            sections: [
+              {
+                title: "ภาพประกอบเล่าเรื่อง · Punchy: Coming Your Way (2024 · งานเรียน MAT102 · งานเดี่ยว)",
+                text: "ภาพประกอบเล่าเรื่องการบำบัดด้วยสัตว์เลี้ยงสำหรับผู้ป่วยโรคซึมเศร้า ออกแบบตัวละครและเล่าเรื่องผ่านภาพ ตั้งแต่ขั้น Brief จนถึง Final Artwork เป็นการเล่าเรื่องผ่านภาพประกอบ ไม่ใช่การบำบัดทางการแพทย์ ใช้โปรแกรม Clip Studio Paint",
+              },
+              {
+                title: "สติกเกอร์ LINE (วางขายแล้ว)",
+                text: "ชุดสติกเกอร์ LINE ของ Punchy วางขายแล้ว",
+              },
+            ],
+            links: [], // ใส่ลิงก์ร้านสติกเกอร์ LINE ที่เช็กแล้วว่าเปิดได้จริง
+          },
+          {
+            title: "Drawing Hobby",
+            slug: "drawing-hobby",
+            page: "art/drawing-hobby.html",
+            year: "2025–ปัจจุบัน",
+            role: "ภาพวาดต่อเนื่อง",
+            status: "แฟนอาร์ต · No Straight Roads",
+            desc: "ภาพที่วาดต่อเนื่องตั้งแต่ปี 2025 จนถึงปัจจุบัน เป็นภาพ Victoria (ตัวละคร OC ของฉัน) คู่กับตัวละครที่มีอยู่แล้วในเกม No Straight Roads",
+            notice: "แฟนอาร์ต: ตัวละครจากเกม No Straight Roads เป็นของเจ้าของต้นฉบับ ส่วน Victoria เป็นตัวละคร OC ของ อินทุอร ธีรางกูร",
+            image: "",
+            gallery: [], // ใส่ { image, alt, caption } เมื่อเลือกภาพแล้ว มีภาพเมื่อไหร่การ์ดนี้จะโผล่ที่หน้า Art เอง
+            sections: [],
+            links: [],
+          },
+        ],
+      },
+      {
         title: "Character design",
         items: [
           {
@@ -444,7 +514,9 @@ window.SITE = {
             image: "img/art/personal-project-lineup.webp",
             imageAlt: "ภาพรวมตัวละคร OC 9 ตัวยืนเรียงแถว",
             imageRatio: "2000 / 488",
+            caption: "Personal Project · Fan character (NSR) — ตัวละคร OC 9 ตัวที่ฉันออกแบบเองให้อยู่ในโลกของเกม No Straight Roads โลกและเกมเป็นของเจ้าของต้นฉบับ",
             lightFrame: true,
+            maxWidth: "56rem",
             charactersTitle: "ตัวละครใน lineup",
             characters: [
               { name: "ตัวแทนของฉัน", slug: "", page: "" }, // TODO: ใส่ชื่อตัวละครของเจ้าของเว็บ
@@ -468,45 +540,6 @@ window.SITE = {
             extra: { title: "ภาพเพิ่มเติม", note: "ภาพที่ลองวาดตัวละครในสไตล์อื่น", items: [] },
             sections: [],
             links: [],
-          },
-        ],
-      },
-      {
-        title: "ภาพประกอบ",
-        items: [
-          {
-            title: "Drawing Hobby",
-            slug: "drawing-hobby",
-            page: "art/drawing-hobby.html",
-            year: "2025–ปัจจุบัน",
-            role: "ภาพวาดต่อเนื่อง",
-            status: "แฟนอาร์ต · No Straight Roads",
-            desc: "ภาพที่วาดต่อเนื่องตั้งแต่ปี 2025 จนถึงปัจจุบัน เป็นภาพ Victoria (ตัวละคร OC ของฉัน) คู่กับตัวละครที่มีอยู่แล้วในเกม No Straight Roads",
-            notice: "แฟนอาร์ต: ตัวละครจากเกม No Straight Roads เป็นของเจ้าของต้นฉบับ ส่วน Victoria เป็นตัวละคร OC ของ อินทุอร ธีรางกูร",
-            image: "",
-            gallery: [], // ใส่ { image, alt, caption } เมื่อเลือกภาพแล้ว มีภาพเมื่อไหร่การ์ดนี้จะโผล่ที่หน้า Art เอง
-            sections: [],
-            links: [],
-          },
-          {
-            title: "Punchy",
-            slug: "punchy",
-            page: "art/punchy.html",
-            role: "ตัวละครแมว · ภาพประกอบเล่าเรื่อง + สติกเกอร์ LINE",
-            desc: "Punchy ตัวละครแมวของฉัน ปรากฏในภาพประกอบเล่าเรื่องงานเรียน (2024) และชุดสติกเกอร์ LINE ที่วางขายแล้ว",
-            image: "",
-            imageAlt: "",
-            sections: [
-              {
-                title: "ภาพประกอบเล่าเรื่อง · Punchy: Coming Your Way (2024 · งานเรียน MAT102 · งานเดี่ยว)",
-                text: "ภาพประกอบเล่าเรื่องการบำบัดด้วยสัตว์เลี้ยงสำหรับผู้ป่วยโรคซึมเศร้า ออกแบบตัวละครและเล่าเรื่องผ่านภาพ ตั้งแต่ขั้น Brief จนถึง Final Artwork เป็นการเล่าเรื่องผ่านภาพประกอบ ไม่ใช่การบำบัดทางการแพทย์ ใช้โปรแกรม Clip Studio Paint",
-              },
-              {
-                title: "สติกเกอร์ LINE (วางขายแล้ว)",
-                text: "ชุดสติกเกอร์ LINE ของ Punchy วางขายแล้ว",
-              },
-            ],
-            links: [], // ใส่ลิงก์ร้านสติกเกอร์ LINE ที่เช็กแล้วว่าเปิดได้จริง
           },
         ],
       },
@@ -546,20 +579,6 @@ window.SITE = {
           },
         ],
       },
-      {
-        title: "ก่อนเข้ามหาวิทยาลัย",
-        items: [
-          {
-            title: "วิวัฒนาการ 2018 → 2023",
-            slug: "evolution",
-            role: "ภาพรวมงานวาดก่อนเข้ามหาวิทยาลัย เรียงเก่า → ใหม่",
-            status: "รวมแฟนอาร์ตและงานตัวละครต้นฉบับ",
-            image: "",
-            imageAlt: "",
-            lightFrame: true,
-          },
-        ],
-      },
     ],
   },
   // ลิงก์ที่ href เป็น "" จะไม่แสดง (GitHub ใส่หลังเก็บกวาดเสร็จ)
@@ -588,6 +607,8 @@ window.SITE = {
     detailLink: "ดูรายละเอียด →",
     backBuild: "← Build",
     backArt: "← Art",
+    viewAllImages: "ดูทั้งหมด →",
+    jumpLabel: "ข้ามไปส่วนต่างๆ ของหน้า Art",
     charsTitle: "ตัวละคร",
     figmaTitle: "ต้นแบบ (Figma)",
     variantsTitle: "ลองดูแบบทดลอง",
