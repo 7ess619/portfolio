@@ -223,7 +223,7 @@
       if (!items.length) return;
       var sec = el("section", "work-group art-flow");
       sec.id = "art-sec-" + gi;
-      jumps.push({ id: sec.id, label: g.navLabel || g.title });
+      if (g.nav !== false) jumps.push({ id: sec.id, label: g.navLabel || g.title });
       sec.appendChild(el("h2", "", g.title));
       if (g.note) sec.appendChild(el("p", "art-note", g.note));
       items.forEach(function (it) { sec.appendChild(piece(it)); });

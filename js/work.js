@@ -158,6 +158,42 @@
       box.appendChild(vsec.section);
     }
 
+    // วิดีโอสาธิต: videos = [{ src: "img/xxx.mp4", poster: "img/xxx.webp", caption }] (ไฟล์ MP4 ในเว็บ เล่นวนไม่มีเสียง)
+    //              หรือ { youtube: "รหัสวิดีโอ 11 ตัว", caption } (ฝัง YouTube แบบ Unlisted)
+    var vids = (item.videos || []).filter(function (v) { return v.src || /^[\w-]{11}$/.test(v.youtube || ""); });
+    if (vids.length) {
+      var vs = el("section", "work-section wide");
+      vs.appendChild(el("h2", "", item.videosTitle || S.ui.videosTitle));
+      var vgrid = el("div", "work-videos");
+      vids.forEach(function (v) {
+        var fig = el("figure", "work-video");
+        if (v.src) {
+          var vd = document.createElement("video");
+          vd.src = up(v.src);
+          if (v.poster) vd.poster = up(v.poster);
+          vd.controls = true; vd.muted = true; vd.loop = true; vd.playsInline = true;
+          vd.preload = "metadata";
+          vd.setAttribute("aria-label", v.caption || item.title);
+          // เล่นเองเมื่อไม่ได้ตั้งลดการเคลื่อนไหว (วิดีโอไม่มีเสียง) ถ้าตั้งไว้ ผู้ชมกดเล่นเอง
+          if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) vd.autoplay = true;
+          fig.appendChild(vd);
+        } else {
+          var box16 = el("div", "work-video-frame");
+          var ifr = document.createElement("iframe");
+          ifr.src = "https://www.youtube-nocookie.com/embed/" + v.youtube;
+          ifr.title = v.caption || item.title;
+          ifr.loading = "lazy";
+          ifr.allowFullscreen = true;
+          box16.appendChild(ifr);
+          fig.appendChild(box16);
+        }
+        if (v.caption) fig.appendChild(el("figcaption", "work-video-cap", v.caption));
+        vgrid.appendChild(fig);
+      });
+      vs.appendChild(vgrid);
+      box.appendChild(vs);
+    }
+
     // หัวข้อที่ใส่ cols: true และอยู่ติดกัน จะถูกรวมในแถวเดียวกัน (.work-cols)
     var colsBox = null;
     (item.sections || []).forEach(function (sec) {

@@ -100,6 +100,22 @@ window.SITE = {
       // งาน Art ที่ขึ้นหน้าแรก: เพิ่มได้เมื่อมีภาพจริง (ไม่ใส่ช่องแม่แบบ) ภาพย่อไว้ที่ img/art/
       items: [
         {
+          title: "Punchy",
+          role: "ตัวละครแมว · ภาพประกอบเล่าเรื่อง + สติกเกอร์ LINE",
+          href: "art/punchy.html",
+          image: "",
+          imageAlt: "",
+        },
+        // ช่อง General / Drawing Hobby: ยังไม่มีภาพ จึงลิงก์ไปหน้า Art รวมไว้ก่อน (ไม่ลิงก์ไปหน้าที่ยังว่าง)
+        // พอมีภาพแล้วใส่ image และเปลี่ยน href เป็น "art/general.html" / "art/drawing-hobby.html"
+        {
+          title: "General",
+          role: "ภาพวาดทั่วไป",
+          href: "art.html",
+          image: "",
+          imageAlt: "",
+        },
+        {
           title: "Personal Project",
           role: "Character design · OC 9 ตัว",
           status: "Fan character · NSR",
@@ -108,25 +124,9 @@ window.SITE = {
           imageAlt: "ตัวละคร OC ของอินทุอร ได้แก่ Otty, Victoria และ Capi-Tune",
         },
         {
-          title: "Punchy",
-          role: "ตัวละครแมว · ภาพประกอบเล่าเรื่อง + สติกเกอร์ LINE",
-          href: "art/punchy.html",
-          image: "",
-          imageAlt: "",
-        },
-        // ช่อง 3–4: ยังไม่มีภาพ จึงลิงก์ไปหน้า Art รวมไว้ก่อน (ไม่ลิงก์ไปหน้าที่ยังว่าง)
-        // พอมีภาพแล้วใส่ image และเปลี่ยน href เป็น "art/drawing-hobby.html" / "art/general.html"
-        {
           title: "Drawing Hobby",
           role: "ภาพวาดต่อเนื่องตั้งแต่ 2025",
           status: "แฟนอาร์ต · No Straight Roads",
-          href: "art.html",
-          image: "",
-          imageAlt: "",
-        },
-        {
-          title: "General",
-          role: "ภาพวาดทั่วไป",
           href: "art.html",
           image: "",
           imageAlt: "",
@@ -261,6 +261,7 @@ window.SITE = {
               text: "ทีมพัฒนาระบบด้วย ESP32 เซนเซอร์ตรวจแรงกด และเซอร์โวมอเตอร์ ทดสอบสำเร็จ 9 ใน 10 ครั้ง",
             },
           ],
+          videos: [], // ใส่ { src: "img/ชื่อไฟล์.mp4", poster: "img/ชื่อภาพ.webp", caption: "..." } หรือ { youtube: "รหัส 11 ตัว", caption: "..." }
           figma: "",
           role: "ทีม 3 คน · ริเริ่มไอเดีย + ช่วยฝั่งฮาร์ดแวร์",
           status: "งานเรียน",
@@ -285,6 +286,7 @@ window.SITE = {
               text: "ออกแบบและประกอบชิ้นงานทั้งหมด (ไม่รวมวงจรอิเล็กทรอนิกส์) ทำงานร่วมกับเพื่อนในทีม 5 คนที่พัฒนาวงจรให้แสงเปลี่ยน pattern ตามระยะ เครื่องมือที่ใช้: Canva และ Clip Studio Paint",
             },
           ],
+          videos: [], // ใส่ { src: "img/ชื่อไฟล์.mp4", poster: "img/ชื่อภาพ.webp", caption: "..." } หรือ { youtube: "รหัส 11 ตัว", caption: "..." }
           figma: "",
           role: "ทีม 5 คน · ออกแบบและประกอบชิ้นงาน",
           status: "งานเรียน",
@@ -385,7 +387,7 @@ window.SITE = {
             },
           ],
           figma: "https://www.figma.com/proto/b1loLamNTvYeRHa1M44OMj/TaoBin-goesbrrrrrrrrr?node-id=1-2&starting-point-node-id=1%3A2",
-          figmaRatio: "16 / 10",
+          figmaRatio: "9 / 16",
           figmaNote: "ต้นแบบนี้นำเสนอไอเดียฟีเจอร์ใหม่ที่ทีมศึกษาและคิดขึ้น ฟีเจอร์คิดโดยฉัน ส่วนหน้าตา UI ออกแบบโดยเพื่อนร่วมทีม (งานเรียน ไม่เกี่ยวข้องกับแบรนด์เต่าบิน)",
           role: "ทีม 2 คน · คิดฟีเจอร์ + ตรวจความถูกต้อง (UI โดยเพื่อน)",
           status: "งานเรียน",
@@ -433,7 +435,8 @@ window.SITE = {
     intro: "Character design และภาพประกอบ",
     groups: [
       {
-        title: "ภาพรวมงานวาด",
+        title: "ภาพรวมงานเก่า (2018–2023)",
+        navLabel: "ภาพรวม",
         note: "ภาพรวมงานวาดแต่ละช่วง มีทั้งแฟนอาร์ตและตัวละครต้นฉบับของฉัน ตัวละครจากเกมหรือผลงานของผู้อื่นเป็นของเจ้าของต้นฉบับ",
         items: [
           // หน้า Art ไม่ใช้การ์ด: ทุกรายการวางเป็นภาพเต็มอยู่ตรงกลาง + caption (ข้อความเล็กใต้ภาพ) / maxWidth = ความกว้างสูงสุดของภาพ (ไม่ใส่ = 44rem ตามค่าเริ่มต้นใน style.css) ปรับตัวเลขให้ภาพเล็ก/ใหญ่ขึ้นได้
@@ -445,6 +448,12 @@ window.SITE = {
             imageAlt: "ภาพรวมงานวาด 12 ภาพ ตั้งแต่ปี 2018 ถึง 2023 ครึ่งปีละ 1 ภาพ",
             caption: "ภาพรวมงานวาด 2018–2023 ครึ่งปีละ 1 ภาพ รวม 12 ภาพ เรียงเก่า → ใหม่ จากซ้ายไปขวา แถวบนไปแถวล่าง (ข้อความในภาพเป็นภาษาเกาหลี หมายถึง \"สรุปงานวาด 5 ปี\")",
           },
+        ],
+      },
+      {
+        title: "ภาพรวมงานปัจจุบัน (2023–2025)",
+        nav: false, // ไม่ซ้ำปุ่มลิงก์ข้ามส่วน (ใช้ปุ่ม "ภาพรวม" ของส่วนก่อนหน้า)
+        items: [
           // row = ภาพหลายภาพเรียงเป็นแถวเดียว (ความสูงเท่ากัน) ratio = กว้าง/สูงของภาพ ใช้แบ่งความกว้างให้ความสูงเท่ากัน
           // บนจอแคบ (≤600px) จะเรียงซ้อนลงมาเอง
           {
@@ -468,7 +477,8 @@ window.SITE = {
         ],
       },
       {
-        title: "ภาพประกอบ",
+        title: "Punchy",
+        navLabel: "Punchy",
         items: [
           {
             title: "Punchy",
@@ -490,17 +500,20 @@ window.SITE = {
             ],
             links: [], // ใส่ลิงก์ร้านสติกเกอร์ LINE ที่เช็กแล้วว่าเปิดได้จริง
           },
+        ],
+      },
+      {
+        title: "ตัวอย่างงาน",
+        navLabel: "ตัวอย่างงาน",
+        items: [
           {
-            title: "Drawing Hobby",
-            slug: "drawing-hobby",
-            page: "art/drawing-hobby.html",
-            year: "2025–ปัจจุบัน",
-            role: "ภาพวาดต่อเนื่อง",
-            status: "แฟนอาร์ต · No Straight Roads",
-            desc: "ภาพที่วาดต่อเนื่องตั้งแต่ปี 2025 จนถึงปัจจุบัน เป็นภาพ Victoria (ตัวละคร OC ของฉัน) คู่กับตัวละครที่มีอยู่แล้วในเกม No Straight Roads",
-            notice: "แฟนอาร์ต: ตัวละครจากเกม No Straight Roads เป็นของเจ้าของต้นฉบับ ส่วน Victoria เป็นตัวละคร OC ของ อินทุอร ธีรางกูร",
+            title: "General",
+            slug: "general",
+            page: "art/general.html",
+            role: "ภาพวาดทั่วไป",
+            desc: "ภาพวาดทั่วไปที่ไม่ได้อยู่ในชุดตัวละครหรือภาพประกอบเรื่องด้านบน",
             image: "",
-            gallery: [], // ใส่ { image, alt, caption } เมื่อเลือกภาพแล้ว มีภาพเมื่อไหร่การ์ดนี้จะโผล่ที่หน้า Art เอง
+            gallery: [], // ใส่ { image, alt, caption } เมื่อเลือกภาพแล้ว (caption ควรบอกถ้าเป็นแฟนอาร์ต/ตัวละครต้นฉบับ) มีภาพเมื่อไหร่ส่วนนี้โผล่เอง
             sections: [],
             links: [],
           },
@@ -550,16 +563,20 @@ window.SITE = {
         ],
       },
       {
-        title: "General",
+        title: "Personal hobby",
+        navLabel: "Personal hobby",
         items: [
           {
-            title: "General",
-            slug: "general",
-            page: "art/general.html",
-            role: "ภาพวาดทั่วไป",
-            desc: "ภาพวาดทั่วไปที่ไม่ได้อยู่ในชุดตัวละครหรือภาพประกอบเรื่องด้านบน",
+            title: "Drawing Hobby",
+            slug: "drawing-hobby",
+            page: "art/drawing-hobby.html",
+            year: "2025–ปัจจุบัน",
+            role: "ภาพวาดต่อเนื่อง",
+            status: "แฟนอาร์ต · No Straight Roads",
+            desc: "ภาพที่วาดต่อเนื่องตั้งแต่ปี 2025 จนถึงปัจจุบัน เป็นภาพ Victoria (ตัวละคร OC ของฉัน) คู่กับตัวละครที่มีอยู่แล้วในเกม No Straight Roads",
+            notice: "แฟนอาร์ต: ตัวละครจากเกม No Straight Roads เป็นของเจ้าของต้นฉบับ ส่วน Victoria เป็นตัวละคร OC ของ อินทุอร ธีรางกูร",
             image: "",
-            gallery: [], // ใส่ { image, alt, caption } เมื่อเลือกภาพแล้ว (caption ควรบอกถ้าเป็นแฟนอาร์ต/ตัวละครต้นฉบับ) มีภาพเมื่อไหร่ส่วนนี้โผล่เอง
+            gallery: [], // ใส่ { image, alt, caption } เมื่อเลือกภาพแล้ว มีภาพเมื่อไหร่การ์ดนี้จะโผล่ที่หน้า Art เอง
             sections: [],
             links: [],
           },
@@ -620,6 +637,7 @@ window.SITE = {
     variantsTitle: "ลองดูแบบทดลอง",
     variantPick: "เลือกแบบทดลอง",
     notFound: "ไม่พบผลงานนี้",
+    videosTitle: "วิดีโอสาธิต",
     figmaBlocked: "กรอบต้นแบบแสดงในหน้านี้ไม่ได้ กดปุ่ม “เปิดใน Figma” ด้านล่างเพื่อดูต้นแบบ",
   },
 };
