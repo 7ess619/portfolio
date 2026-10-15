@@ -149,15 +149,112 @@
       box.appendChild(cs);
     }
 
+    // ---- ตัวช่วยของหน้า breakdown ตัวละคร ----
+    function validHex(h) { return /^#[0-9a-f]{6}$/i.test(h); }
+    function figsEl(list, w) {
+      var g = el("div", "art-figs");
+      var cw = w || "20rem";
+      g.style.gridTemplateColumns = "repeat(auto-fill, minmax(min(100%, " + cw + "), " + cw + "))";
+      list.forEach(function (x) { g.appendChild(figure(x, false)); });
+      return g;
+    }
+    // แผ่นสี: ใช้คลาสเดียวกับหน้างาน Your Houng (.palette / .swatch)
+    function paletteEl(list) {
+      var colors = list.filter(function (c) { return validHex(c.hex); });
+      var pal = el("div", "palette");
+      pal.style.gridTemplateColumns = "repeat(" + Math.min(colors.length, 6) + ", 1fr)";
+      colors.forEach(function (c) {
+        var sw = el("div", "swatch");
+        var col = el("div", "swatch-color");
+        col.style.background = c.hex;
+        sw.appendChild(col);
+        var lab = el("span", "swatch-label");
+        lab.appendChild(el("span", "swatch-name", c.name));
+        lab.appendChild(el("span", "swatch-hex", c.hex.toUpperCase()));
+        sw.appendChild(lab);
+        pal.appendChild(sw);
+      });
+      return pal;
+    }
+    // Moodboard 3x3: ช่องที่ยังไม่มีภาพขึ้นกรอบ "ยังไม่ใส่ภาพ" + คำบรรยาย
+    function moodEl(list) {
+      var g = el("div", "art-mood");
+      list.forEach(function (m) {
+        var f = document.createElement("figure");
+        f.className = "art-mood-item";
+        var ph = el("div", "ph");
+        if (m.image) ph.appendChild(pic(m.image, m.alt || m.caption)); else ph.textContent = S.ui.placeholder;
+        f.appendChild(ph);
+        if (m.caption) {
+          var cp = el("figcaption", "art-mood-cap", m.caption);
+          if (m.work) cp.appendChild(el("span", "art-mood-work", m.work));
+          if (m.href) {
+            var ma = el("a", "art-mood-src", S.ui.source);
+            ma.href = m.href; ma.target = "_blank"; ma.rel = "noopener";
+            cp.appendChild(ma);
+          }
+          f.appendChild(cp);
+        }
+        g.appendChild(f);
+      });
+      return g;
+    }
+
+    // หัวข้อที่ใส่ cols: true และอยู่ติดกัน จะรวมเป็นแถวเดียว 2 คอลัมน์ (.art-cols)
+    var colsBox = null;
     (item.sections || []).forEach(function (sec) {
       var s = section(sec.title);
-      if (sec.text) s.appendChild(el("p", "", sec.text));
+      var paras = Array.isArray(sec.text) ? sec.text : (sec.text ? [sec.text] : []);
+      // split: ภาพอยู่ซ้าย / ขวาเป็นแผ่นสี แล้วตามด้วยข้อความ รายการอ้างอิง (host = คอลัมน์ขวา)
+      var split = !!(sec.split && sec.images && sec.palette);
+      var host = s;
+      if (split) {
+        var sp = el("div", "art-split");
+        sp.appendChild(figsEl(sec.images, "14rem"));
+        host = el("div", "art-split-main");
+        host.appendChild(paletteEl(sec.palette));
+        sp.appendChild(host);
+        s.appendChild(sp);
+      }
+      if (sec.imagesFirst && sec.images) s.appendChild(figsEl(sec.images, sec.imageWidth));
+      paras.forEach(function (t) { host.appendChild(el("p", "", t)); });
       if (sec.list) {
         var l = document.createElement("ul");
         sec.list.forEach(function (t) { l.appendChild(el("li", "", t)); });
-        s.appendChild(l);
+        host.appendChild(l);
       }
-      box.appendChild(s);
+      // refs = รายการอ้างอิง { name, work, href } (ลิงก์ที่มา เปิดแท็บใหม่)
+      if (sec.refs) {
+        var rl = document.createElement("ul");
+        sec.refs.forEach(function (r) {
+          var li = el("li", "", r.name + (r.work ? " · " + r.work : ""));
+          if (r.href) {
+            li.appendChild(document.createTextNode(" · "));
+            var ra = el("a", "", S.ui.source);
+            ra.href = r.href; ra.target = "_blank"; ra.rel = "noopener";
+            li.appendChild(ra);
+          }
+          rl.appendChild(li);
+        });
+        host.appendChild(rl);
+      }
+      (Array.isArray(sec.textAfter) ? sec.textAfter : (sec.textAfter ? [sec.textAfter] : [])).forEach(function (t) { host.appendChild(el("p", "art-after", t)); });
+      if (split && sec.rightImages) host.appendChild(figsEl(sec.rightImages, sec.rightImageWidth || "22rem"));
+      if (sec.moodboard) {
+        if (sec.note) s.appendChild(el("p", "art-note", sec.note));
+        s.appendChild(moodEl(sec.moodboard));
+      }
+      if (!split) {
+        if (!sec.imagesFirst && sec.images) s.appendChild(figsEl(sec.images, sec.imageWidth));
+        if (sec.palette) s.appendChild(paletteEl(sec.palette));
+      }
+      if (sec.cols) {
+        if (!colsBox) { colsBox = el("div", "art-cols"); box.appendChild(colsBox); }
+        colsBox.appendChild(s);
+      } else {
+        colsBox = null;
+        box.appendChild(s);
+      }
     });
 
     // ขั้นตอนการวาด (ภาพเคลื่อนไหว): ถ้าผู้ใช้ตั้งลดการเคลื่อนไหว แสดงภาพนิ่งแทน

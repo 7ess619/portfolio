@@ -845,7 +845,7 @@ main,
 .work {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  grid-template-rows: auto 3.1rem 1.3rem 2.7rem 1.7rem 1.7rem auto;
+  grid-template-rows: auto 3.1rem 1.3rem 2.7rem 1.7rem auto;
   align-content: start;
   align-items: start;
   row-gap: .15rem;
@@ -883,8 +883,18 @@ main,
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.work .work-detail-link { grid-row: 6; justify-self: start; }
-.work .work-links { grid-row: 7; }
+.work .work-links { grid-row: 6; position: relative; z-index: 1; } /* ลิงก์ภายนอกอยู่เหนือพื้นที่กดของการ์ด */
+
+/* ทั้งการ์ดกดได้ (เหมือนการ์ดหน้าแรก): ลิงก์ที่ชื่อ ขยายพื้นที่กดครอบทั้งใบ */
+.work { position: relative; }
+.work-link { color: inherit; text-decoration: none; }
+.work-link::after { content: ""; position: absolute; inset: 0; border-radius: 12px; }
+.work:has(.work-link) { cursor: pointer; }
+.work:has(.work-link):hover { border-color: var(--text); }
+.work:has(.work-link):hover .ph { outline: 2px solid var(--text); outline-offset: 2px; }
+.work:has(.work-link):hover .work-link { text-decoration: underline; text-underline-offset: 4px; }
+.work-link:focus-visible { outline: none; }
+.work-link:focus-visible::after { outline: 2px solid var(--text); outline-offset: 3px; }
 
 @media (prefers-reduced-motion: reduce) {
 
@@ -913,3 +923,27 @@ main,
 .work-video-frame { aspect-ratio: 16 / 9; background: #000; border-radius: 8px; overflow: hidden; }
 .work-video-frame iframe { display: block; width: 100%; height: 100%; border: 0; }
 .work-video-cap { margin: .4rem 0 0; color: var(--muted); font-size: .9rem; }
+
+/* หน้า breakdown ตัวละคร (Victoria และตัวอื่น) */
+.art-figs { display: grid; gap: 1rem; justify-content: start; }
+.art-figs figure { margin: 0; }
+.art-figs img { display: block; width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--line); }
+.art-figs .art-caption { text-align: left; }
+.art-split { display: grid; grid-template-columns: minmax(0, 14rem) minmax(0, 1fr); gap: 1.5rem; align-items: start; }
+.art-split .palette { margin-top: 0; max-width: 32rem; }
+.art-mood { display: grid; grid-template-columns: repeat(3, 1fr); gap: .75rem; max-width: 34rem; }
+.art-mood-item { margin: 0; }
+.art-mood .ph { aspect-ratio: 1 / 1; border-radius: 8px; overflow: hidden; font-size: .75rem; text-align: center; padding: .25rem; }
+.art-mood-cap { margin: .3rem 0 0; color: var(--muted); font-size: .8rem; line-height: 1.4; text-align: center; }
+.work-section .art-after { margin-top: .9rem; }
+@media (max-width: 600px) { .art-split { grid-template-columns: minmax(0, 1fr); } }
+.art-split-main { min-width: 0; }
+.art-split-main .palette { margin-bottom: 1.25rem; }
+.art-split-main p { margin: 0 0 .75rem; }
+.art-split-main ul { margin: 0 0 .75rem; }
+.art-cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 2.5rem; align-items: start; }
+.art-cols .art-mood { max-width: none; }
+.art-mood-work, .art-mood-src { display: block; }
+.art-mood-work { color: var(--muted); }
+.art-mood-src { color: var(--muted); text-underline-offset: 3px; }
+@media (max-width: 860px) { .art-cols { grid-template-columns: minmax(0, 1fr); } }

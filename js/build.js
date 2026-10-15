@@ -33,16 +33,19 @@
       ph.textContent = S.ui.placeholder;
     }
     c.appendChild(ph);
-    c.appendChild(el("h3", "", item.title));
+    // ทั้งการ์ดกดได้ (ชื่อเป็นลิงก์ ขยายพื้นที่กดด้วย CSS ให้ครอบทั้งใบ) ไม่มีหน้างาน = ไม่เป็นลิงก์
+    var h3 = el("h3");
+    if (item.page) {
+      var tl = el("a", "work-link", item.title);
+      tl.href = item.page;
+      h3.appendChild(tl);
+    } else {
+      h3.textContent = item.title;
+    }
+    c.appendChild(h3);
     if (item.year) c.appendChild(el("span", "work-year", item.yearShort || item.year));
     if (item.role) c.appendChild(el("span", "work-role", item.role));
     if (item.status) c.appendChild(el("span", "thumb-status", item.status));
-    // ลิงก์ไปหน้างาน: แสดงเมื่อสร้างหน้านั้นแล้ว (ใส่ page ใน data.js) ยังไม่มีหน้า = ไม่แสดง ไม่มีลิงก์เสีย
-    if (item.page) {
-      var more = el("a", "work-detail-link", S.ui.detailLink);
-      more.href = item.page;
-      c.appendChild(more);
-    }
     // ปุ่มลิงก์: ช่องที่ href ว่างจะไม่แสดง (ใส่หลังเช็กแล้วว่าเปิดได้จริง)
     var links = (item.links || []).filter(function (l) { return l.href; });
     if (links.length) {
