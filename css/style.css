@@ -717,6 +717,7 @@ main,
 .work-desc { margin: 0; font-size: .95rem; line-height: 1.65; }
 .work-embed { width: 100%; aspect-ratio: 16 / 10; background: var(--skeleton); border-radius: 8px; overflow: hidden; }
 .work-embed iframe { display: block; width: 100%; height: 100%; border: 0; }
+.embed-note { margin: .6rem 0 0; color: var(--muted); font-size: .9rem; }
 .work-embed-open { width: fit-content; color: var(--muted); font-size: .9rem; text-underline-offset: 4px; }
 .work-links { list-style: none; margin: .4rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: .25rem 1rem; font-size: .9rem; }
 .work-links a { text-underline-offset: 4px; }
@@ -726,20 +727,20 @@ main,
 
 /* หน้างานแต่ละชิ้น (build/*.html) */
 .work-detail-link { margin-top: .4rem; color: var(--text); font-size: .9rem; text-underline-offset: 4px; }
-.work-detail { max-width: 62rem; padding-bottom: 2rem; }
+.work-detail { padding-bottom: 2rem; } /* เต็มความกว้างเท่า header/footer ไม่จำกัดกล่องแคบชิดซ้าย */
 .work-detail h1 { margin: 0 0 .5rem; font-size: clamp(1.8rem, 4.5vw, 2.6rem); line-height: 1.25; }
 .work-meta { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1rem; margin: 0 0 1.25rem; color: var(--muted); }
 .work-meta .thumb-status { margin-top: 0; }
-.work-lead { margin: 0 0 1.5rem; max-width: 62ch; font-size: 1.05rem; }
+.work-lead { margin: 0 0 1.5rem; max-width: 56rem; font-size: 1.05rem; } /* ข้อความนำ: ไม่แคบเป็นกล่องเล็ก แต่ไม่ยาวเต็มจอ */
 .work-hero { margin: 0 0 2rem; }
 .work-hero .ph { aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; }
-.work-section { margin: 0 0 2rem; max-width: 62ch; }
+.work-section { margin: 0 0 2rem; }
 .work-section.wide { max-width: none; }
 .work-section h2 { margin: 0 0 .5rem; font-size: 1.2rem; }
 .work-section p { margin: 0; }
 .work-section ul { margin: 0; padding-left: 1.25rem; }
 .work-section li { margin-bottom: .25rem; }
-.work-embed.portrait { max-width: 24rem; }
+.work-embed.portrait { max-width: 24rem; margin: 0 auto; } /* ต้นแบบแนวตั้ง: อยู่กึ่งกลาง */
 .work-embed.is-blocked { aspect-ratio: auto !important; max-width: none; padding: 1.25rem; color: var(--muted); font-size: .95rem; }
 /* แผ่นสี: แบ่งความกว้างเท่ากันทุกสี เต็มความกว้างของส่วนนั้น */
 .palette { display: grid; gap: .5rem; margin-top: .9rem; max-width: 40rem; }
@@ -793,7 +794,7 @@ main,
 .art-piece .art-caption { max-width: 62ch; margin: .75rem auto 0; line-height: 1.6; }
 .art-piece .art-caption a { text-underline-offset: 4px; }
 .art-hero-caption { margin: -1.25rem 0 2rem; } /* คำบรรยายใต้ภาพหลัก ชิดภาพมากกว่าช่องไฟปกติ */
-.art-notice { margin: 0 0 1.5rem; padding: .75rem 1rem; max-width: 62ch; border: 1px solid var(--line); border-radius: 10px; color: var(--muted); font-size: .9rem; }
+.art-notice { margin: 0 0 1.5rem; padding: .75rem 1rem; border: 1px solid var(--line); border-radius: 10px; color: var(--muted); font-size: .9rem; }
 .art-caption { margin: .5rem 0 0; color: var(--muted); font-size: .9rem; text-align: center; } /* คำบรรยายใต้ภาพ: อยู่กึ่งกลางภาพ */
 .art-note { margin: 0 0 .75rem; color: var(--muted); font-size: .9rem; } /* โน้ตนำหน้าส่วนภาพ (ไม่ใช่ใต้ภาพ) ชิดซ้ายเหมือนหัวข้อ */
 .art-chars { list-style: none; margin: .25rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: .5rem; }
@@ -901,3 +902,6 @@ main,
     transition: none;
   }
 }
+/* หน้างาน Build: หัวข้อที่ใส่ cols: true ใน data.js และอยู่ติดกัน จะรวมเป็นแถวเดียว 3 คอลัมน์ (จอแคบเรียงซ้อนลง) */
+.work-cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 2.5rem; align-items: start; }
+@media (max-width: 860px) { .work-cols { grid-template-columns: minmax(0, 1fr); } }

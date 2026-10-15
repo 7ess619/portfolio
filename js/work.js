@@ -118,6 +118,7 @@
       var one = makeEmbedSection(S.ui.figmaTitle, ratio);
       one.iframe.src = embed;
       one.open.href = item.figma;
+      if (item.figmaNote) one.section.insertBefore(el("p", "embed-note", item.figmaNote), one.open);
       box.appendChild(one.section);
     }
 
@@ -157,6 +158,8 @@
       box.appendChild(vsec.section);
     }
 
+    // หัวข้อที่ใส่ cols: true และอยู่ติดกัน จะถูกรวมในแถวเดียวกัน (.work-cols)
+    var colsBox = null;
     (item.sections || []).forEach(function (sec) {
       var s = el("section", "work-section");
       s.appendChild(el("h2", "", sec.title));
@@ -184,7 +187,13 @@
         });
         s.appendChild(pal);
       }
-      box.appendChild(s);
+      if (sec.cols) {
+        if (!colsBox) { colsBox = el("div", "work-cols"); box.appendChild(colsBox); }
+        colsBox.appendChild(s);
+      } else {
+        colsBox = null;
+        box.appendChild(s);
+      }
     });
 
     if (item.gallery && item.gallery.length) {
